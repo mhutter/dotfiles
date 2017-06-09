@@ -1,0 +1,73 @@
+[ -z "$__COMMONRC" ] || return
+export __COMMONRC=loaded
+
+# Aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ll='ls -laF'
+alias ldot='ls -ld .*'
+
+alias a='atom -a .'
+alias be='bundle exec'
+alias bup='brew update && brew upgrade && brew cleanup'
+alias cwd='cd "$(pwd -P)"'
+alias hd="hexdump -C"
+alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
+alias makepw='apg -a1 -n16 -m16 -MSNCL'
+alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
+
+# Load various tools.
+# Loading thos autocompletion takes forever, so we lazy-load them! :D
+_shell() {
+  ps -o command= -p $$ | sed 's/^-//'
+}
+
+_rbenv_wrapper() {
+  cmd="$1"; shift
+
+  if [ -z "$__rbenv" ]; then
+    eval "$(command rbenv init -)"
+    export __rbenv=y
+  fi
+
+  command "$cmd" "$@"
+}
+rbenv()  { _rbenv_wrapper rbenv  "$@"; }
+ruby()   { _rbenv_wrapper ruby   "$@"; }
+bundle() { _rbenv_wrapper bundle "$@"; }
+
+oc() {
+  if [ -z "$__oc" ]; then
+    source <(command oc completion "$(_shell)")
+    export __oc=y
+  fi
+  command oc "$@"
+}
+kubectl() {
+  if [ -z "$__kubectl" ]; then
+    source <(command kubectl completion "$(_shell)")
+    export __kubectl=y
+  fi
+  command kubectl "$@"
+}
+
+travis() {
+  if [ -z "$__travis" ]; then
+    source ~/.travis/travis.sh
+    export __travis=y
+  fi
+  command travis "$@"
+}
+
+nvm() {
+  if [ -z "$__nvm" ]; then
+    source ~/.nvm/nvm.sh
+    export __nvm=y
+  fi
+  command nvm "$@"
+}
+
+
+source ~/.docker-helpers.sh
+
+# vim: ft=sh

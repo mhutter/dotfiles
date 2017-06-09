@@ -1,0 +1,29 @@
+[user]
+	name = Manuel Hutter
+[color]
+	ui = auto
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	s = status -s
+	ol = log --oneline --graph
+	lg = log --oneline --decorate --all --graph
+	dc = diff --check
+	tag-dates = log --tags --simplify-by-decoration  --pretty=\"format:%ai %d\"
+	log-sig = log --pretty=\"format:%h %G? %aN  %s\"
+	unstage = reset HEAD
+	staged = diff --staged
+	yolopush = push --force
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[push]
+	default = simple
+[pull]
+	rebase = true
+[commit]
+	gpgsign = true
+[include]
+	path = .gitconfig.local
