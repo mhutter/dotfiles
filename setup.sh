@@ -33,6 +33,6 @@ done
 ls -1 config/ |
 while read -r cdir; do
   target="${HOME}/.config/${cdir}"
-  rm -r "$target"
+  test -e "$target" && rm -r "$target"
   ln -sf "${dir}/config/${cdir}" "$target"
 done
