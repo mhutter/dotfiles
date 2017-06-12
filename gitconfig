@@ -26,4 +26,4 @@
 [commit]
 	gpgsign = true
 [include]
-	path = .gitconfig.local
+	path = ~/.gitconfig.local
