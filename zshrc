@@ -25,3 +25,9 @@ bindkey -s '^F' '^Usource <(oc completion zsh)\n'
 
 # load some initialization which is common for all shells
 [ -f "${HOME}/.commonrc" ] && source "${HOME}/.commonrc"
+
+# load work-specifics
+find "$HOME" -maxdepth 1 -name '.*-vshn' |
+while read -r file; do
+  source "$file"
+done
