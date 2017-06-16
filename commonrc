@@ -35,6 +35,7 @@ _rbenv_wrapper() {
 rbenv()  { _rbenv_wrapper rbenv  "$@"; }
 ruby()   { _rbenv_wrapper ruby   "$@"; }
 bundle() { _rbenv_wrapper bundle "$@"; }
+pry()    { _rbenv_wrapper pry    "$@"; }
 
 oc() {
   if [ -z "$__oc" ]; then
