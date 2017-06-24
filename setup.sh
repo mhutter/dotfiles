@@ -11,7 +11,7 @@ if [ ! -e "${OH_MY_ZSH}" ]; then
   git clone https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
 fi
 mkdir -p "${OH_MY_ZSH}/custom/themes"
-ln -sf "${dir}/*.zsh-theme" "${OH_MY_ZSH}/custom/themes"
+ln -sf ${dir}/*.zsh-theme "${OH_MY_ZSH}/custom/themes"
 
 #
 # Link common dotfiles
