@@ -2,6 +2,7 @@ scriptencoding utf-8
 
 """ Basics
 let g:mapleader=' '
+set backupcopy=yes " make sure inotify can pick up file changes
 
 """ Tabs #tabs
 " - Two spaces wide
