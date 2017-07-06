@@ -15,7 +15,7 @@
 	unstage = reset HEAD
 	staged = diff --staged
 	yolopush = push --force
-	yoloci = commit -m "$(curl -sS http://whatthecommit.com/index.txt)"
+	yoloci = !sh -c \"git commit -m '$(curl -sS http://whatthecommit.com/index.txt)'\"
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
