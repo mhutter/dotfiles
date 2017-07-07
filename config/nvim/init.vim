@@ -104,6 +104,12 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_html_checkers = []
 
+Plug 'ctrlpvim/ctrlp.vim'
+  let g:ctrlp_working_path_mode = 'a'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir': 'node_modules$',
+    \ }
+
 call plug#end()
 
 set background=dark
