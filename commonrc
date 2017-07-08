@@ -4,6 +4,7 @@ export __COMMONRC=loaded
 # Aliases
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ls='ls -G'
 alias ll='ls -laF'
 alias ldot='ls -ld .*'
 
