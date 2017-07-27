@@ -20,6 +20,7 @@ alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
 if which nvim &>/dev/null; then
   alias vim=nvim
   alias nvc='nvim ~/.config/nvim/init.vim'
+  export EDITOR=nvim
 fi
 
 # Load various tools.
@@ -41,6 +42,7 @@ _rbenv_wrapper() {
 bundle() { _rbenv_wrapper bundle "$@"; }
 gem()    { _rbenv_wrapper gem    "$@"; }
 pry()    { _rbenv_wrapper pry    "$@"; }
+puppet-lint() { _rbenv_wrapper puppet-lint "$@"; }
 rbenv()  { _rbenv_wrapper rbenv  "$@"; }
 ruby()   { _rbenv_wrapper ruby   "$@"; }
 
