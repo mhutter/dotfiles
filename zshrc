@@ -9,7 +9,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="mhutter"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git docker mix)
+plugins=(git docker)
 source "${ZSH}/oh-my-zsh.sh"
 
 # Code and Projects
