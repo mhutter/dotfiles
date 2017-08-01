@@ -24,6 +24,14 @@ if which nvim &>/dev/null; then
   export EDITOR=nvim
 fi
 
+# SSH-Agent
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+  eval "$(<~/.ssh-agent-thing)"
+fi
+
 # Load various tools.
 # Loading thos autocompletion takes forever, so we lazy-load them! :D
 _shell() {
