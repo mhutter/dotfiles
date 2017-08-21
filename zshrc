@@ -31,3 +31,8 @@ find "$HOME" -maxdepth 1 -name '.*-vshn' |
 while read -r file; do
   source "$file"
 done
+
+# Cleanup env vars and make sure rc-files are reloaded in tmux
+for v in $(env | grep '^__.*=loaded$' | cut -d= -f1); do
+  unset $v
+done
