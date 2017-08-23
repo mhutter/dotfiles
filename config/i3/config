@@ -97,12 +97,12 @@ bindsym $mod+a focus parent
 # Workspaces
 set $workspace1 "1:  Chrome"
 set $workspace2 "2:  Terminals"
-set $workspace3 "3:  ???"
-set $workspace4 "4:  ???"
-set $workspace5 "5:  ???"
-set $workspace6 "6:  ???"
-set $workspace7 "7:  ???"
-set $workspace8 "8:  ???"
+set $workspace3 "3:  Terminals"
+set $workspace4 "4:  Workspace 4"
+set $workspace5 "5:  Workspace 5"
+set $workspace6 "6:  Workspace 6"
+set $workspace7 "7:  Workspace 7"
+set $workspace8 "8:  Workspace 8"
 set $workspace9 "9:  Steam"
 set $workspace10 "10:  Spotify"
 
@@ -201,7 +201,7 @@ bar {
 }
 
 # Custom Key bindings
-bindsym $mod+shift+x exec i3lock --color "$bg-color
+bindsym $mod+shift+x exec i3lock --color "$bg-color"
 bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "DejaVu Sans Book 18"
 
 # Pulse Audio controls
