@@ -20,7 +20,7 @@ alias redis-docker='docker run -d --rm --name redis -p 6379:6379/tcp redis:alpin
 alias redis-cli-docker="docker run -it --link redis:redis --rm redis:alpine sh -c 'exec redis-cli -h \"\$REDIS_PORT_6379_TCP_ADDR\" -p \"\$REDIS_PORT_6379_TCP_PORT\"'"
 
 # Postgres
-alias postgres-docker='docker run -d --rm --name postgres -p 5432:5432 --volume ${HOME}/srv/postgres:/var/lib/postgresql/db postgres:alpine'
+alias postgres-docker='docker run -d --rm --name postgres -p 5432:5432 --volume ${HOME}/srv/postgres:/var/lib/postgresql/data postgres:alpine'
 alias postgres-cli-docker="docker run -it --rm --link postgres:postgres postgres:alpine psql -h postgres -U postgres"
 
 # MySQL
