@@ -152,3 +152,4 @@ augroup go
 augroup END
 
 autocmd BufNewFile,BufRead *.babelrc setlocal filetype=json
+autocmd BufNewFile,BufRead *.sls     setlocal filetype=yaml
