@@ -28,3 +28,5 @@
 	gpgsign = true
 [include]
 	path = ~/.gitconfig.local
+[http]
+	cookiefile = /Users/mhutter/.gitcookies
