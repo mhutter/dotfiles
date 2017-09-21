@@ -44,23 +44,6 @@ _shell() {
   ps -o command= -p $$ | sed 's/^-//'
 }
 
-_rbenv_wrapper() {
-  cmd="$1"; shift
-
-  if [ -z "$__rbenv" ]; then
-    eval "$(command rbenv init -)"
-    export __rbenv=y
-  fi
-
-  command "$cmd" "$@"
-}
-bundle() { _rbenv_wrapper bundle "$@"; }
-gem()    { _rbenv_wrapper gem    "$@"; }
-pry()    { _rbenv_wrapper pry    "$@"; }
-puppet-lint() { _rbenv_wrapper puppet-lint "$@"; }
-rbenv()  { _rbenv_wrapper rbenv  "$@"; }
-ruby()   { _rbenv_wrapper ruby   "$@"; }
-
 oc() {
   if [ -z "$__oc" ]; then
     source <(command oc completion "$(_shell)")
