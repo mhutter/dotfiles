@@ -1,3 +1,4 @@
+# vim: ft=sh
 [ -z "$__PROFILE" ] || return
 export __PROFILE=loaded
 
@@ -15,5 +16,4 @@ export LC_CTYPE=$LANG
 [ -d "${HOME}/.yarn/bin" ] && export PATH="${HOME}/.yarn/bin:${PATH}"
 plibexec=/usr/local/opt/python/libexec/bin
 [ -d "$plibexec" ] && export PATH="${plibexec}:$PATH"
-
-# vim: ft=sh
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
