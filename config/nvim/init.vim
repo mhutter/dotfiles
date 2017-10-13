@@ -25,7 +25,15 @@ set colorcolumn=81
 " turn off mouse
 set mouse=""
 set title
-set number
+set number relativenumber
+
+" When not in focus or in insert mode, use absolute line numbers
+" otherwise, use hybrid line numbers.
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 """ Search
 set hlsearch
