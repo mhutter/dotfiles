@@ -17,3 +17,7 @@ export LC_CTYPE=$LANG
 plibexec=/usr/local/opt/python/libexec/bin
 [ -d "$plibexec" ] && export PATH="${plibexec}:$PATH"
 [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+which rustup &>/dev/null && \
+  RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" && \
+  export RUST_SRC_PATH

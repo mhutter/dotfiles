@@ -58,6 +58,16 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
   let g:go_fmt_command = "goimports"
 
+" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+  set hidden
+  let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ }
+  let g:LanguageClient_autoStart = 1
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+
 " For other languages, automatically load SyntaxHighlighting
 " IMPORTANT: This must be BELOW the specific Plugins above!
 Plug 'sheerun/vim-polyglot'
@@ -101,6 +111,7 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_check_on_wq = 0
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_html_checkers = []
+  let g:syntastic_rust_checkers = ['rustc']
 
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_working_path_mode = 'a'
