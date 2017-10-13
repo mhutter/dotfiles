@@ -170,5 +170,8 @@ augroup go
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab
 augroup END
 
+autocmd BufNewFile,BufRead *.{c,cpp,h} setlocal tabstop=4
+autocmd BufNewFile,BufRead *.{c,cpp,h} setlocal shiftwidth=4
+
 autocmd BufNewFile,BufRead *.babelrc setlocal filetype=json
 autocmd BufNewFile,BufRead *.sls     setlocal filetype=yaml
