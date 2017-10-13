@@ -121,6 +121,8 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_html_checkers = []
   let g:syntastic_rust_checkers = ['rustc']
 
+Plug 'roxma/nvim-completion-manager'
+
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_working_path_mode = 'a'
   let g:ctrlp_custom_ignore = {
