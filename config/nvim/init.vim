@@ -95,7 +95,7 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 
 " colors
-Plug 'tomasr/molokai'
+Plug 'jeffkreeftmeijer/vim-dim'
 
 " Airline, cuz why not
 Plug 'vim-airline/vim-airline'
@@ -135,7 +135,7 @@ call plug#end()
 
 set background=dark
 syntax enable
-colorscheme molokai
+colorscheme dim
 
 """ Keyboard
 " Remove highlights
