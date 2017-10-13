@@ -35,6 +35,10 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+" When reopening a file, jump to the last position
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal! g'\"" | endif
+
 """ Search
 set hlsearch
 set incsearch
