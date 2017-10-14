@@ -36,3 +36,11 @@ done
 for v in $(env | grep '^__.*=loaded$' | cut -d= -f1); do
   unset $v
 done
+
+plugins=(
+  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+)
+for p in $plugins; do
+  test -f "$p" && source "$p"
+done
