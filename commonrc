@@ -78,10 +78,13 @@ nvm() {
 
 source ~/.docker-helpers.sh
 
-if [ "$TERM" = "screen.xterm-256color" ]; then
+if [ "$TERM" = "screen" ]; then
   export TERM="xterm-256color"
 fi
 
-function ssh () { /usr/bin/ssh -t $@ "tmux attach || tmux new"; }
+function ssh () {
+  TERM=${TERM//-unicode-/-}
+  /usr/bin/ssh -t $@ "tmux attach || tmux new"
+}
 
 # vim: ft=sh
