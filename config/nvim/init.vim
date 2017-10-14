@@ -101,6 +101,9 @@ Plug 'kassio/neoterm'
 " colors
 Plug 'jeffkreeftmeijer/vim-dim'
 
+" list buffers
+Plug 'bling/vim-bufferline'
+
 " Airline, cuz why not
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
