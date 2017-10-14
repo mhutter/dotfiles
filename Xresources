@@ -66,8 +66,8 @@ URxvt*color15:                        #FFFFFF
 
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
-URxvt.font: xft:hack:size=10
-URxvt.letterSpace: -1
+URxvt.font: xft:hack:size=10, xft:symbola:size=11, xft:noto emoji:size=11
+URxvt.letterSpace: 4
 URxvt.depth: 24
 URxvt.url-launcher: /usr/bin/google-chrome-stable
 
