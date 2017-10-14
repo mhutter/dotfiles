@@ -5,6 +5,9 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+# Used below. Should be PNG to be used with i3lock
+set $wallpaper /home/mhutter/Pictures/wallpaper.png
+
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -133,6 +136,10 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Steam"] $workspace9
 assign [class="Spotify"] $workspace10 # seems broken, workaround below
 for_window [class="Spotify"] move to workspace $workspace10
+# TODO: find out instance and class with xprop
+#for_window [class="" instance=""] floating enable
+# browser pop-ups
+for_window [window_role="pop-up"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -198,7 +205,7 @@ bar {
 }
 
 # Custom Key bindings
-bindsym $mod+shift+x exec i3lock --color "$bg-color"
+bindsym $mod+shift+x exec i3lock -i "$wallpaper"
 bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "DejaVu Sans Book 18"
 
 # Pulse Audio controls
@@ -215,6 +222,6 @@ bindsym XF86AudioPrev exec playerctl previous
 exec google-chrome-stable
 exec spotify
 # Set the Wallpaper
-exec_always feh --bg-fill /home/mhutter/Pictures/wallpaper.jpg
+exec_always feh --bg-fill $wallpaper
 
 exec compton -f
