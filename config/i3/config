@@ -137,7 +137,7 @@ assign [class="Steam"] $workspace9
 assign [class="Spotify"] $workspace10 # seems broken, workaround below
 for_window [class="Spotify"] move to workspace $workspace10
 # TODO: find out instance and class with xprop
-#for_window [class="" instance=""] floating enable
+for_window [class="Pinentry" instance="pinentry"] floating enable
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable
 
