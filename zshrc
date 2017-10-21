@@ -40,6 +40,8 @@ done
 plugins=(
   /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 )
 for p in $plugins; do
   test -f "$p" && source "$p"
