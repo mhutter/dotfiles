@@ -67,15 +67,6 @@ travis() {
   command travis "$@"
 }
 
-nvm() {
-  if [ -z "$__nvm" ]; then
-    source ~/.nvm/nvm.sh
-    export __nvm=y
-  fi
-  command nvm "$@"
-}
-
-
 source ~/.docker-helpers.sh
 
 function ssh () {

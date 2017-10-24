@@ -8,16 +8,31 @@ export LANG=en_US.UTF-8
 export LANGUAGE=$LANG
 export LC_ALL=$LANG
 export LC_CTYPE=$LANG
+export NVM_DIR="$HOME/.nvm"
 
 # load local env vars
 [ -f "${HOME}/.env" ] && source "${HOME}/.env"
 
 # various PATH locations
-[ -d "${HOME}/.yarn/bin" ] && export PATH="${HOME}/.yarn/bin:${PATH}"
-plibexec=/usr/local/opt/python/libexec/bin
-[ -d "$plibexec" ] && export PATH="${plibexec}:$PATH"
-[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+paths=(
+  "${HOME}/.yarn/bin"
+  /usr/local/opt/python/libexec/bin
+  "${HOME}/.cargo/bin"
+)
+for p in $paths; do
+  test -d "$p" && PATH="${p}:${PATH}"
+done
+export PATH
 
 which rustup &>/dev/null && \
   RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" && \
   export RUST_SRC_PATH
+
+# various sources
+files=(
+  /usr/lib/nvm/nvm.sh
+  /usr/local/opt/nvm/nvm.sh
+)
+for f in $files; do
+  test -f "$f" && source "$f"
+done
