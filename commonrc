@@ -78,12 +78,9 @@ nvm() {
 
 source ~/.docker-helpers.sh
 
-if [ "$TERM" = "screen" ]; then
-  export TERM="xterm-256color"
-fi
-
 function ssh () {
   TERM=${TERM//-unicode-/-}
+  TERM=${TERM//screen\./}
   /usr/bin/ssh -t $@ "tmux attach || tmux new"
 }
 
