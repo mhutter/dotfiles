@@ -27,6 +27,9 @@ alias postgres-cli-docker="docker run -it --rm --link postgres:postgres postgres
 alias mysql-docker='docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=test -p 3306:3306 --volume ${HOME}/srv/mysql:/var/lib/mysql mysql'
 alias mysql-cli-docker="docker run -it --rm --link mysql:mysql mysql sh -c 'exec mysql -h\"\$MYSQL_PORT_3306_TCP_ADDR\" -P\"\$MYSQL_PORT_3306_TCP_PORT\" -uroot -p\"\$MYSQL_ENV_MYSQL_ROOT_PASSWORD\"'"
 
+# Influxdb
+alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 -v influxdb:/var/lib/influxdb influxdb:alpine'
+
 # Create a volume-container
 function docker-create-datacontainer {
   if [ $# -ne 3 ]; then
