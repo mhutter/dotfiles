@@ -14,7 +14,7 @@
 	log-sig = log --pretty=\"format:%h %G? %aN  %s\"
 	unstage = reset HEAD
 	staged = diff --staged
-	yolopush = push --force
+	yolopush = push --force-with-lease
 	fix = commit --fixup
 	squ = commit --squash
 	ri = rebase -i --autosquash
