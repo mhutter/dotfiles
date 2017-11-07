@@ -99,7 +99,7 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 
 " colors
-Plug 'tomasr/molokai'
+Plug 'nanotech/jellybeans.vim'
 
 " list buffers
 Plug 'bling/vim-bufferline'
@@ -144,7 +144,7 @@ call plug#end()
 
 set background=dark
 syntax enable
-colorscheme molokai
+colorscheme jellybeans
 
 """ Keyboard
 " Remove highlights
