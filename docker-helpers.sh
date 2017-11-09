@@ -12,30 +12,20 @@ dri() { docker run -it --rm "$1" bash; }
 #
 
 # MongoDB
-alias mongo-docker='docker run -d --rm --name mongo -p 27017:27017 --volume ${HOME}/srv/mongo:/data/db mongo'
-alias mongo-cli-docker="docker run -it --link mongo:mongo --rm mongo sh -c 'exec mongo \"\$MONGO_PORT_27017_TCP_ADDR:\$MONGO_PORT_27017_TCP_PORT/test\"'"
+alias mongo-docker='docker run -d --rm --name mongo -p 27017:27017 --volume mongo_data:/data/db mongo'
+alias mongo-cli-docker='docker exec -it mongo mongo'
 
 # Redis
 alias redis-docker='docker run -d --rm --name redis -p 6379:6379/tcp redis:alpine'
-alias redis-cli-docker="docker run -it --link redis:redis --rm redis:alpine sh -c 'exec redis-cli -h \"\$REDIS_PORT_6379_TCP_ADDR\" -p \"\$REDIS_PORT_6379_TCP_PORT\"'"
+alias redis-cli-docker='docker exec -it redis redis-cli'
 
 # Postgres
-alias postgres-docker='docker run -d --rm --name postgres -p 5432:5432 --volume ${HOME}/srv/postgres:/var/lib/postgresql/data postgres:alpine'
-alias postgres-cli-docker="docker run -it --rm --link postgres:postgres postgres:alpine psql -h postgres -U postgres"
+alias postgres-docker='docker run -d --rm --name postgres -p 5432:5432 --volume postgres_data:/var/lib/postgresql/data postgres:alpine'
+postgres-cli-docker='docker exec -it postgres psql'
 
 # MySQL
-alias mysql-docker='docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=test -p 3306:3306 --volume ${HOME}/srv/mysql:/var/lib/mysql mysql'
-alias mysql-cli-docker="docker run -it --rm --link mysql:mysql mysql sh -c 'exec mysql -h\"\$MYSQL_PORT_3306_TCP_ADDR\" -P\"\$MYSQL_PORT_3306_TCP_PORT\" -uroot -p\"\$MYSQL_ENV_MYSQL_ROOT_PASSWORD\"'"
+alias mysql-docker='docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=test -p 3306:3306 --volume mysql_data:/var/lib/mysql mysql'
+alias mysql-cli-docker='docker exec -it mysql mysql'1
 
 # Influxdb
-alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 -v influxdb:/var/lib/influxdb influxdb:alpine'
-
-# Create a volume-container
-function docker-create-datacontainer {
-  if [ $# -ne 3 ]; then
-    echo "Usage: $0 <path> <name> <image>"
-    return 1
-  else
-    docker create -v "$1" --name "${2}-data" "$3" /bin/true
-  fi
-}
+alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 --volume influxdb_data:/var/lib/influxdb influxdb:alpine'
