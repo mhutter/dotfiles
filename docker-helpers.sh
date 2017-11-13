@@ -21,11 +21,11 @@ alias redis-cli-docker='docker exec -it redis redis-cli'
 
 # Postgres
 alias postgres-docker='docker run -d --rm --name postgres -p 5432:5432 --volume postgres_data:/var/lib/postgresql/data postgres:alpine'
-postgres-cli-docker='docker exec -it postgres psql'
+alias postgres-cli-docker='docker exec -it postgres psql --user postgres'
 
 # MySQL
 alias mysql-docker='docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=test -p 3306:3306 --volume mysql_data:/var/lib/mysql mysql'
-alias mysql-cli-docker='docker exec -it mysql mysql'1
+alias mysql-cli-docker='docker exec -it mysql mysql'
 
 # Influxdb
 alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 --volume influxdb_data:/var/lib/influxdb influxdb:alpine'
