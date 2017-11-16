@@ -84,7 +84,7 @@ source ~/.docker-helpers.sh
 function ssh () {
   TERM=${TERM//-unicode-/-}
   TERM=${TERM//screen\./}
-  /usr/bin/ssh -t $@ "tmux attach || tmux new"
+  /usr/bin/ssh -t $@ "tmux attach || tmux new || bash"
 }
 
 # vim: ft=sh
