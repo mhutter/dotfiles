@@ -29,10 +29,3 @@ which rustup &>/dev/null && \
   export RUST_SRC_PATH
 
 # various sources
-files=(
-  /usr/lib/nvm/nvm.sh
-  /usr/local/opt/nvm/nvm.sh
-)
-for f in $files; do
-  test -f "$f" && source "$f"
-done

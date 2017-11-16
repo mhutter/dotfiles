@@ -58,7 +58,19 @@ kubectl() {
   fi
   command kubectl "$@"
 }
-
+nvm() {
+  if [ -z "$__nvm" ]; then
+    files=(
+      /usr/lib/nvm/nvm.sh
+      /usr/local/opt/nvm/nvm.sh
+    )
+    for f in $files; do
+      test -f "$f" && source "$f"
+    done
+    export __nvm=y
+  fi
+  command nvm "$@"
+}
 travis() {
   if [ -z "$__travis" ]; then
     source ~/.travis/travis.sh
