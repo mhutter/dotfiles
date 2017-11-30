@@ -25,7 +25,7 @@ alias postgres-cli-docker='docker exec -it postgres psql --user postgres'
 
 # MySQL
 alias mysql-docker='docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=test -p 3306:3306 --volume mysql_data:/var/lib/mysql mysql'
-alias mysql-cli-docker='docker exec -it mysql mysql'
+alias mysql-cli-docker='docker exec -it mysql /bin/sh -c "mysql -uroot -p\"$MYSQL_ROOT_PASSWORD\""'
 
 # Influxdb
 alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 --volume influxdb_data:/var/lib/influxdb influxdb:alpine'
