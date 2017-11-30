@@ -121,6 +121,7 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_html_checkers = []
   let g:syntastic_rust_checkers = ['rustc']
   let g:syntastic_puppet_puppetlint_args = ['--no-80chars-check']
+  let g:syntastic_python_pylint_args = "--indent-string='  '"
 
 Plug 'roxma/nvim-completion-manager'
 
