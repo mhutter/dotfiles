@@ -19,6 +19,7 @@
 	fix = commit --fixup
 	squ = commit --squash
 	ri = rebase -i --autosquash
+	pp = pull --prune
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
