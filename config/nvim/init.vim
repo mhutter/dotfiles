@@ -70,15 +70,8 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
   let g:go_fmt_command = "goimports"
 
-" Rust
-Plug 'rust-lang/rust.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-  set hidden
-  let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ }
-  let g:LanguageClient_autoStart = 1
-  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" Puppet
+Plug 'rodjek/vim-puppet'
 
 " For other languages, automatically load SyntaxHighlighting
 " IMPORTANT: This must be BELOW the specific Plugins above!
@@ -93,7 +86,7 @@ Plug 'janko-m/vim-test'
   nmap <silent> <leader>l :TestLast<CR>
   nmap <silent> <leader>g :TestVisit<CR>
   " run tests in neoterm
-  let g:test#strategy = 'neoterm'
+  let g:test#strategy = 'neovim'
 
 " :T
 Plug 'kassio/neoterm'
@@ -127,6 +120,7 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_html_checkers = []
   let g:syntastic_rust_checkers = ['rustc']
+  let g:syntastic_puppet_puppetlint_args = ['--no-80chars-check']
 
 Plug 'roxma/nvim-completion-manager'
 
