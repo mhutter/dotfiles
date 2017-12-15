@@ -3,7 +3,7 @@
 [color]
 	ui = auto
 [alias]
-	ci = commit
+	ci = commit -v
 	co = checkout
 	st = status
 	s = status -s
