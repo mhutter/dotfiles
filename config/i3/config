@@ -97,6 +97,11 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Dual Monitor stuff
+set $firstMonitor DVI-I-1
+set $secondMonitor HDMI-0
+exec xrandr --output $firstMonitor --right-of $secondMonitor --auto
+
 # Workspaces
 set $workspace1 "1:  Chrome"
 set $workspace2 "2:  Terminals"
@@ -108,6 +113,17 @@ set $workspace7 "7:  Workspace 7"
 set $workspace8 "8:  Workspace 8"
 set $workspace9 "9:  Steam"
 set $workspace10 "10:  Spotify"
+
+workspace $workspace1 output $firstMonitor
+workspace $workspace2 output $firstMonitor
+workspace $workspace3 output $firstMonitor
+workspace $workspace4 output $firstMonitor
+workspace $workspace5 output $firstMonitor
+workspace $workspace6 output $secondMonitor
+workspace $workspace7 output $secondMonitor
+workspace $workspace8 output $secondMonitor
+workspace $workspace9 output $secondMonitor
+workspace $workspace10 output $secondMonitor
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
