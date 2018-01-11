@@ -1,3 +1,4 @@
+# shellcheck source=/dev/null
 # On some OSes (eg. macOS) .profile is not loaded by default so load it by
 # default. It has a mechanism in place which avoids loading it twice.
 [ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
@@ -13,11 +14,11 @@ plugins=(git docker)
 source "${ZSH}/oh-my-zsh.sh"
 
 # Code and Projects
-c() { cd ~/code/$1; }
+c() { cd "${HOME}/code/$1" || return 1; }
 _c() { _files -W ~/code -/; }
 compdef _c c
 
-p() { cd ~/Projects/$1; }
+p() { cd "${HOME}/Projects/$1" || return 1; }
 _p() { _files -W ~/Projects -/; }
 compdef _p p
 
@@ -34,7 +35,7 @@ done
 
 # Cleanup env vars and make sure rc-files are reloaded in tmux
 for v in $(env | grep '^__.*=loaded$' | cut -d= -f1); do
-  unset $v
+  unset "$v"
 done
 
 plugins=(
@@ -42,9 +43,9 @@ plugins=(
   /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
   /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  ${HOME}/src/google-cloud-sdk/completion.zsh.inc
-  ${HOME}/src/google-cloud-sdk/path.zsh.inc
+  "${HOME}/src/google-cloud-sdk/completion.zsh.inc"
+  "${HOME}/src/google-cloud-sdk/path.zsh.inc"
 )
-for p in $plugins; do
+for p in "${plugins[@]}"; do
   test -f "$p" && source "$p"
 done

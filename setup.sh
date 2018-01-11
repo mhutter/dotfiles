@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 cd "$(dirname "$0")" || exit 1
 dir=$(pwd)
@@ -11,14 +11,14 @@ if [ ! -e "${OH_MY_ZSH}" ]; then
   git clone https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
 fi
 mkdir -p "${OH_MY_ZSH}/custom/themes"
-ln -sf ${dir}/*.zsh-theme "${OH_MY_ZSH}/custom/themes"
+ln -sf "${dir}/*.zsh-theme" "${OH_MY_ZSH}/custom/themes"
 
 #
 # Link common dotfiles
 #
 
 # List of files to skip when linking
-skipfiles=($(basename "$0") *.zsh-theme)
+skipfiles=("$(basename "$0")" *.zsh-theme)
 
 find . -maxdepth 1 -type f -exec basename "{}" \; |
 while read -r file; do
@@ -30,7 +30,7 @@ done
 #
 # Link .config dirs
 #
-ls -1 config/ |
+find . -maxdepth 1 -exec basename "{}" \; |
 while read -r cdir; do
   target="${HOME}/.config/${cdir}"
   test -e "$target" && rm -r "$target"

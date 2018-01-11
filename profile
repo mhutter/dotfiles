@@ -11,6 +11,7 @@ export LC_CTYPE=$LANG
 export NVM_DIR="$HOME/.nvm"
 
 # load local env vars
+# shellcheck source=/dev/null
 [ -f "${HOME}/.env" ] && source "${HOME}/.env"
 
 # various PATH locations
@@ -21,7 +22,7 @@ paths=(
   "${HOME}/.gem/ruby/2.3.0/bin"
   "${HOME}/Library/Python/2.7/bin"
 )
-for p in $paths; do
+for p in "${paths[@]}"; do
   test -d "$p" && PATH="${p}:${PATH}"
 done
 export PATH
