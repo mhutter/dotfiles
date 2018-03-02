@@ -42,3 +42,4 @@ Thumbs.db
 .bundle
 node_modules/
 .netrwhist
+*.bak
