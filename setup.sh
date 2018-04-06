@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 cd "$(dirname "$0")" || exit 1
 dir=$(pwd)
@@ -9,18 +9,25 @@ dir=$(pwd)
 OH_MY_ZSH="${HOME}/.oh-my-zsh"
 if [ ! -e "${OH_MY_ZSH}" ]; then
   git clone https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
+else
+  pushd "$OH_MY_ZSH" || exit 1
+  git pull --prune
+  popd || exit 1
 fi
 mkdir -p "${OH_MY_ZSH}/custom/themes"
-ln -sf "${dir}/*.zsh-theme" "${OH_MY_ZSH}/custom/themes"
+ln -sf "$dir"/*.zsh-theme "${OH_MY_ZSH}/custom/themes"
 
 #
 # Link common dotfiles
 #
 
 # List of files to skip when linking
-skipfiles=("$(basename "$0")" *.zsh-theme)
+skipfiles=(
+  "$(basename "$0")"
+  *.zsh-theme
+)
 
-find . -maxdepth 1 -type f -exec basename "{}" \; |
+find . -depth 1 -type f -exec basename "{}" \; |
 while read -r file; do
   if [[ ${skipfiles[(r)$file]} != "$file" ]]; then
     ln -sf "${dir}/${file}" "${HOME}/.${file}"
@@ -30,9 +37,11 @@ done
 #
 # Link .config dirs
 #
-find . -maxdepth 1 -exec basename "{}" \; |
+config="${HOME}/.config"
+mkdir -p "$config"
+find ./config/ -depth 1 -exec basename "{}" \; |
 while read -r cdir; do
-  target="${HOME}/.config/${cdir}"
+  target="${config}/${cdir}"
   test -e "$target" && rm -r "$target"
   ln -sf "${dir}/config/${cdir}" "$target"
 done
