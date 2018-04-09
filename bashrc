@@ -14,7 +14,6 @@ if [ -z "$NVIM_LISTEN_ADDRESS" ]; then
   function da() { cd ~/Projects/vshn_puppet/data/$1; }
   [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
   which oc &>/dev/null && source <(oc completion bash)
-  which kubectl &>/dev/null && source <(kubectl completion bash)
 fi
 
 _p() {

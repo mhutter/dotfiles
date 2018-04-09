@@ -51,13 +51,6 @@ oc() {
   fi
   command oc "$@"
 }
-kubectl() {
-  if [ -z "$__kubectl" ]; then
-    source <(command kubectl completion "$(_shell)")
-    export __kubectl=y
-  fi
-  command kubectl "$@"
-}
 nvm() {
   if [ -z "$__nvm" ]; then
     files=(
