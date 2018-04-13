@@ -15,4 +15,4 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
   host="%{$fg[yellow]%}$(hostname -s) "
 fi
 
-PROMPT='${return_code}%{$fg[blue]%}%* ${host}%{$fg[green]%}%1d%b%{$reset_color%}$(git_prompt_info) %{$fg[yellow]%}〉%{$reset_color%}'
+PROMPT='${return_code}%{$fg[blue]%}%* ${host}%{$fg[green]%}%1d%b%{$reset_color%}$(git_prompt_info) %{$fg[yellow]%}$ %{$reset_color%}'
