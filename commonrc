@@ -31,11 +31,13 @@ if which nvim &>/dev/null; then
 fi
 
 # SSH-Agent
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
-  eval "$(<~/.ssh-agent-thing)"
+if [[ ! -f /etc/arch-release ]]; then
+  if ! pgrep -u"$USER" ssh-agent >/dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+  fi
+  if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+  fi
 fi
 
 # Load various tools.
