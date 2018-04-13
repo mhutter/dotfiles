@@ -25,6 +25,7 @@ ln -sf "$dir"/*.zsh-theme "${OH_MY_ZSH}/custom/themes"
 skipfiles=(
   "$(basename "$0")"
   *.zsh-theme
+  msgFilterRules.dat
 )
 
 find . -depth 1 -type f -exec basename "{}" \; |
