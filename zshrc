@@ -50,3 +50,4 @@ plugins=(
 for p in "${plugins[@]}"; do
   test -f "$p" && source "$p"
 done
+:
