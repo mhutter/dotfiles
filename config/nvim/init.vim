@@ -135,6 +135,9 @@ let g:ctrlp_user_command = [
     \ 'find %s -type f'
     \ ]
 
+Plug 'vimwiki/vimwiki'
+  :nmap <Leader>wn <Plug>VimwikiNextLink
+
 call plug#end()
 
 set background=dark
@@ -144,7 +147,7 @@ colorscheme molokai
 """ Keyboard
 " Remove highlights
 " Clear the search buffer when hitting return
-nnoremap <silent> <cr> :nohlsearch<cr>
+nnoremap <silent> \ :nohlsearch<cr>
 
 " hide/close terminal
 nnoremap <silent> ,th :call neoterm#close()<cr>
