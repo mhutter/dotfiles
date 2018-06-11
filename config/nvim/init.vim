@@ -68,7 +68,7 @@ Plug 'elixir-lang/vim-elixir'
 
 " Go
 Plug 'fatih/vim-go'
-  let g:go_fmt_command = "goimports"
+  let g:go_fmt_command = "goreturns"
 
 " Puppet
 Plug 'rodjek/vim-puppet'
