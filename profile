@@ -19,7 +19,6 @@ paths=(
   "${HOME}/.yarn/bin"
   /usr/local/opt/python/libexec/bin
   "${HOME}/.cargo/bin"
-  "${HOME}/.gem/ruby/2.3.0/bin"
   "${HOME}/Library/Python/2.7/bin"
   "$(go env GOPATH)/bin"
 )

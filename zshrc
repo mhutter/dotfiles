@@ -45,7 +45,6 @@ plugins=(
   /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   "${HOME}/src/google-cloud-sdk/completion.zsh.inc"
   "${HOME}/src/google-cloud-sdk/path.zsh.inc"
-  "${HOME}/.gem/ruby/2.5.0/bin"
 )
 for p in "${plugins[@]}"; do
   test -f "$p" && source "$p"
