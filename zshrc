@@ -38,6 +38,8 @@ for v in $(env | grep '^__.*=loaded$' | cut -d= -f1); do
   unset "$v"
 done
 
+which hcloud &>/dev/null && source <(hcloud completion zsh)
+
 plugins=(
   /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
