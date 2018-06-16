@@ -136,6 +136,7 @@ let g:ctrlp_user_command = [
     \ ]
 
 Plug 'vimwiki/vimwiki'
+  let g:vimwiki_hl_cb_checked = 1
   :nmap <Leader>wn <Plug>VimwikiNextLink
 
 call plug#end()
