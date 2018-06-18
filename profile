@@ -14,6 +14,10 @@ export NVM_DIR="$HOME/.nvm"
 # shellcheck source=/dev/null
 [ -f "${HOME}/.env" ] && source "${HOME}/.env"
 
+which ruby &>/dev/null && \
+  GEMS_PATH="$(ruby -e 'puts Gem::user_dir')/bin" && \
+  test -d "$GEMS_PATH" && PATH="${GEMS_PATH}:${PATH}"
+
 # various PATH locations
 paths=(
   "${HOME}/.yarn/bin"
