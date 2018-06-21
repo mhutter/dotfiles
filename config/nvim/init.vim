@@ -69,6 +69,7 @@ Plug 'elixir-lang/vim-elixir'
 " Go
 Plug 'fatih/vim-go'
   let g:go_fmt_command = "goreturns"
+Plug 'nsf/gocode', {'rtp': 'nvim/'}
 
 " Puppet
 Plug 'rodjek/vim-puppet'
