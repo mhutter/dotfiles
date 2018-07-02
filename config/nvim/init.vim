@@ -124,8 +124,6 @@ Plug 'vim-syntastic/syntastic'
   let g:syntastic_puppet_puppetlint_args = ['--no-80chars-check']
   let g:syntastic_python_pylint_args = "--indent-string='  '"
 
-Plug 'roxma/nvim-completion-manager'
-
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_working_path_mode = 'a'
   let g:ctrlp_custom_ignore = {
