@@ -168,6 +168,10 @@ map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
 
+" help with esc
+inoremap jj <esc>
+inoremap jk <esc>
+
 " Plug Update/Upgrade
 command! PU PlugUpdate | PlugUpgrade
 
