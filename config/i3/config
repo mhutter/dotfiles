@@ -150,7 +150,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 assign [class="Steam"] $workspace9
-assign [class="transmission-gtk"] $workspace6
+assign [class="Transmission-gtk"] $workspace6
 assign [class="Spotify"] $workspace10 # seems broken, workaround below
 for_window [class="Spotify"] move to workspace $workspace10
 # TODO: find out instance and class with xprop
