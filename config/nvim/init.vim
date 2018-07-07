@@ -93,7 +93,7 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 
 " colors
-Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
 
 " list buffers
 Plug 'bling/vim-bufferline'
@@ -142,7 +142,7 @@ call plug#end()
 
 set background=dark
 syntax enable
-colorscheme molokai
+colorscheme base16-default-dark
 
 """ Keyboard
 " Remove highlights
