@@ -9,10 +9,4 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[blue]%}]"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✓"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗"
 
-# Display the Hostname if we're not on an macOS System
-local host=""
-if [[ "$(uname -s)" != "Darwin" ]]; then
-  host="%{$fg[yellow]%}$(hostname -s) "
-fi
-
-PROMPT='${return_code}%{$fg[blue]%}%* ${host}%{$fg[green]%}%1d%b%{$reset_color%}$(git_prompt_info) %{$fg[yellow]%}$ %{$reset_color%}'
+PROMPT='${return_code}%{$fg[blue]%}%* %{$fg[green]%}%1d%b%{$reset_color%}$(git_prompt_info) %{$fg[yellow]%}$ %{$reset_color%}'
