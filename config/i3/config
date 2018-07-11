@@ -236,7 +236,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Autostart Applications
-exec google-chrome-stable
 exec spotify
 exec transmission-gtk
 # Set the Wallpaper
