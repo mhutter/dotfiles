@@ -98,8 +98,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Dual Monitor stuff
-set $firstMonitor HDMI-0
-set $secondMonitor DVI-I-1
+set $firstMonitor DVI-I-1
+set $secondMonitor HDMI-1
 exec xrandr --output $firstMonitor --right-of $secondMonitor --auto
 
 # Workspaces
