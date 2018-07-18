@@ -34,3 +34,5 @@
 	path = ~/.gitconfig.local
 [http]
 	cookiefile = /Users/mhutter/.gitcookies
+[rebase]
+	autoStash = true
