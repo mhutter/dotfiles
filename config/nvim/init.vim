@@ -63,13 +63,19 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#auto_complete_delay = 50
+  let g:deoplete#complete_method = "omnifunc"
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#omni_patterns = {}
+
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 
 " Go
 Plug 'fatih/vim-go'
   let g:go_fmt_command = "goreturns"
-Plug 'nsf/gocode', {'rtp': 'nvim/'}
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
 " Puppet
 Plug 'rodjek/vim-puppet'
