@@ -36,3 +36,5 @@ which rustup &>/dev/null && \
   export RUST_SRC_PATH
 
 # various sources
+
+export PATH="$HOME/.cargo/bin:$PATH"
