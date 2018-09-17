@@ -68,3 +68,6 @@ if [ -f '/home/mhutter/tmp/google-cloud-sdk/path.zsh.inc' ]; then source '/home/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/mhutter/tmp/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/mhutter/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+# added by travis gem
+[ -f /Users/mhutter/.travis/travis.sh ] && source /Users/mhutter/.travis/travis.sh

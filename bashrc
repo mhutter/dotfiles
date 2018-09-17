@@ -35,3 +35,6 @@ _da() {
 complete -F _da da
 
 [ -f "${HOME}/.commonrc" ] && source "${HOME}/.commonrc"
+
+# added by travis gem
+[ -f /Users/mhutter/.travis/travis.sh ] && source /Users/mhutter/.travis/travis.sh
