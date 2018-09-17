@@ -94,6 +94,8 @@ Plug 'kassio/neoterm'
 
 " colors
 Plug 'chriskempson/base16-vim'
+" Access colors present in 256 colorspace
+let base16colorspace=256
 
 " list buffers
 Plug 'bling/vim-bufferline'
