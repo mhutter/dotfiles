@@ -32,3 +32,5 @@ alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 --volume 
 
 #  Keycloak
 alias keycloak-docker='docker run -d --rm --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 --volume keycloak_data:/opt/jboss/keycloak/standalone/data jboss/keycloak:4.0.0.Final'
+
+alias grafana-docker='docker run -d --rm --name grafana -p 3000:3000 -v grafana-storage:/var/lib/grafana grafana/grafana'
