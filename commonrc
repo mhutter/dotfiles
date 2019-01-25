@@ -90,6 +90,17 @@ sslcheck() {
 #    | grep -Ei 'not (before|after)|(subject|dns):'
 }
 
+temp() {
+  local DIR="$(date +%F)"
+  if [ -n "$1" ]; then
+    DIR="${DIR}-$1"
+  fi
+
+  P="${HOME}/tmp/${DIR}"
+  mkdir -p "$P"
+  cd "$P"
+}
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
