@@ -37,3 +37,4 @@ which rustup &>/dev/null && \
   export RUST_SRC_PATH
 
 # various sources
+[ -d "/usr/local/opt/libxml2/lib/pkgconfig" ] && export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
