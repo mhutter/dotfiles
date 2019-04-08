@@ -14,10 +14,6 @@ export NVM_DIR="$HOME/.nvm"
 # shellcheck source=/dev/null
 [ -f "${HOME}/.env" ] && source "${HOME}/.env"
 
-which ruby &>/dev/null && \
-  GEMS_PATH="$(ruby -e 'puts Gem::user_dir')/bin" && \
-  test -d "$GEMS_PATH" && PATH="${GEMS_PATH}:${PATH}"
-
 # various PATH locations
 paths=(
   "${HOME}/.yarn/bin"
@@ -25,11 +21,16 @@ paths=(
   "${HOME}/.cargo/bin"
   "${HOME}/Library/Python/2.7/bin"
   "$(go env GOPATH)/bin"
+  "/usr/local/opt/ruby/bin"
 )
 for p in "${paths[@]}"; do
   test -d "$p" && PATH="${p}:${PATH}"
 done
 export PATH
+
+which ruby &>/dev/null && \
+  GEMS_PATH="$(ruby -e 'puts Gem::user_dir')/bin" && \
+  test -d "$GEMS_PATH" && PATH="${GEMS_PATH}:${PATH}"
 
 which rustup &>/dev/null && \
   RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" && \
