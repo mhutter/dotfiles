@@ -31,6 +31,6 @@ alias mysql-cli-docker='docker exec -it mysql /bin/sh -c "mysql -uroot -p\"$MYSQ
 alias influxdb-docker='docker run -d --rm --name influxdb -p 8086:8086 --volume influxdb_data:/var/lib/influxdb influxdb:alpine'
 
 #  Keycloak
-alias keycloak-docker='docker run -d --rm --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 --volume keycloak_data:/opt/jboss/keycloak/standalone/data jboss/keycloak:4.0.0.Final'
+alias keycloak-docker='docker run -d --rm --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 --volume keycloak_data:/opt/jboss/keycloak/standalone/data jboss/keycloak:5.0.0'
 
 alias grafana-docker='docker run -d --rm --name grafana -p 3000:3000 -v grafana-storage:/var/lib/grafana grafana/grafana'
