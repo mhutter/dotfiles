@@ -6,6 +6,7 @@
 .docker
 .dropbox
 .gem
+.go/bin
 .go/pkg
 .local/share/virtualenvs
 .m2
@@ -25,6 +26,7 @@ Nextcloud
 Spotify/PersistentCache
 VirtualBox VMs
 cache
+go/bin
 go/pkg
 http-cache
 node_modules
