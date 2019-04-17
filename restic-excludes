@@ -1,0 +1,52 @@
+*.DS_Store
+*.log
+*.swp
+.bundle/ruby
+.cache
+.docker
+.dropbox
+.gem
+.meteor
+.minikube
+.minishift
+.npm
+.vagrant.d
+Cache
+Dropbox
+Library/Containers
+Spotify/PersistentCache
+VirtualBox VMs
+cache
+go/pkg
+http-cache
+node_modules
+vendor
+
+# MacOS Time Machine exclusions
+# /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist
+.MobileBackups
+MobileBackups.trash
+.MobileBackups.trash
+.Spotlight-V100
+.Trashes
+Library/Application Support/SyncServices/data.version
+Library/Application Support/Ubiquity
+Library/Caches
+Library/Logs
+Library/Mail/Envelope Index
+Library/Mail/Envelope Index-journal
+Library/Mail/AvailableFeeds
+Library/Mail/Metadata/BackingStoreUpdateJournal
+Library/Mail/V2/MailData/Envelope Index
+Library/Mail/V2/MailData/Envelope Index-journal
+Library/Mail/V2/MailData/AvailableFeeds
+Library/Mail/V2/MailData/BackingStoreUpdateJournal
+Library/Mail/V2/MailData/Envelope Index-shm
+Library/Mail/V2/MailData/Envelope Index-wal
+Library/Mirrors
+Library/PubSub/Database
+Library/PubSub/Downloads
+Library/PubSub/Feeds
+Library/Safari/Icons.db
+Library/Safari/WebpageIcons.db
+Library/Safari/HistoryIndex.sk
