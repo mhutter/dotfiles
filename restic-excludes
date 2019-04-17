@@ -6,20 +6,29 @@
 .docker
 .dropbox
 .gem
+.go/pkg
+.local/share/virtualenvs
+.m2
 .meteor
 .minikube
 .minishift
 .npm
+.rbenv
+.vagrant
 .vagrant.d
 Cache
 Dropbox
-Library/Containers
+Google Drive
+Library/Caches
+Library/Containers/com.docker.docker
+Nextcloud
 Spotify/PersistentCache
 VirtualBox VMs
 cache
 go/pkg
 http-cache
 node_modules
+ownCloud
 vendor
 
 # MacOS Time Machine exclusions
