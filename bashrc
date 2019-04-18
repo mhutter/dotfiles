@@ -38,3 +38,5 @@ complete -F _da da
 
 # added by travis gem
 [ -f /Users/mhutter/.travis/travis.sh ] && source /Users/mhutter/.travis/travis.sh
+
+[ -f /usr/local/bin/mc ] && complete -C /usr/local/bin/mc mc

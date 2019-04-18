@@ -67,3 +67,8 @@ done
 
 # added by travis gem
 [ -f /Users/mhutter/.travis/travis.sh ] && source /Users/mhutter/.travis/travis.sh
+
+[ -f /usr/local/bin/mc ] && {
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C /usr/local/bin/mc mc
+}
