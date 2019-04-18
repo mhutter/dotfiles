@@ -61,3 +61,53 @@ Library/PubSub/Feeds
 Library/Safari/Icons.db
 Library/Safari/WebpageIcons.db
 Library/Safari/HistoryIndex.sk
+/.MobileBackups
+/MobileBackups.trash
+/.MobileBackups.trash
+/.Spotlight-V100
+/.TemporaryItems
+/.Trashes
+/.com.apple.backupd.mvlist.plist
+/.fseventsd
+/.hotfiles.btree
+/Backups.backupdb
+/Desktop DB
+/Desktop DF
+/Network/Servers
+/Library/Updates
+/Previous Systems
+/Users/Shared/SC Info
+/Users/Guest
+/dev
+/home
+/net
+/private/var/db/com.apple.backupd.backupVerification
+/private/var/db/efw_cache
+/private/var/db/Spotlight
+/private/var/db/Spotlight-V100
+/private/var/db/systemstats
+/private/var/lib/postfix/greylist.db
+/Volumes
+/Network
+/automount
+/.vol
+/tmp
+/cores
+/private/tmp
+/private/Network
+/private/tftpboot
+/private/var/automount
+/private/var/folders
+/private/var/run
+/private/var/tmp
+/private/var/vm
+/private/var/db/dhcpclient
+/private/var/db/fseventsd
+/Library/Caches
+/Library/Logs
+/System/Library/Caches
+/System/Library/Extensions/Caches
+/private/var/log
+/private/var/spool/cups
+/private/var/spool/fax
+/private/var/spool/uucp
