@@ -23,6 +23,8 @@ alias hd="hexdump -C"
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 alias makepw='pwgen -s 32 64'
 alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
+alias cleanup-known-hosts="sed -i .bak -E '/^(159|116)/d' ~/.ssh/known_hosts"
+alias kubens='kubectl config set-context --current --namespace'
 
 # Editor Setup
 if which nvim &>/dev/null; then
