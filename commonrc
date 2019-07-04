@@ -108,6 +108,15 @@ temp() {
   cd "$P"
 }
 
+gitp() {
+  if [ -z "$1" ]; then
+    ls -l ~/.gitconfig.local
+    return
+  fi
+
+  ln -sfv ".gitconfig.${1}" ~/.gitconfig.local
+}
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
