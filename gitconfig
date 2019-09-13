@@ -21,7 +21,7 @@
 	ri = rebase -i --autosquash
 	pp = pull --prune
 [core]
-	editor = nvim
+	editor = vim
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [push]

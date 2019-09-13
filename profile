@@ -2,7 +2,7 @@
 [ -z "$__PROFILE" ] || return
 export __PROFILE=loaded
 
-export EDITOR=nvim
+export EDITOR=vim
 export PATH="${HOME}/bin:${PATH}"
 export LANG=en_US.UTF-8
 export LANGUAGE=$LANG

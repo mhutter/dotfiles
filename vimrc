@@ -1,8 +1,16 @@
 scriptencoding utf-8
 
+set nobackup
+set nowritebackup
+set noswapfile
+set noundofile
+
 """ Basics
+set nocompatible
+filetype plugin on
 let g:mapleader=' '
-set backupcopy=yes " make sure inotify can pick up file changes
+set backupcopy=yes  " make sure inotify can pick up file changes
+set backspace=2  " make sure characters can be deleted in insert mode
 
 """ Tabs #tabs
 " - Two spaces wide
@@ -27,6 +35,9 @@ set mouse=""
 set title
 set number relativenumber
 
+set updatetime=500
+set balloondelay=250
+
 " When not in focus or in insert mode, use absolute line numbers
 " otherwise, use hybrid line numbers.
 augroup numbertoggle
@@ -45,68 +56,29 @@ set incsearch
 set ignorecase smartcase
 set smartcase
 
-if isdirectory($HOME . '/.config/nvim/undo') == 0
-  :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
-endif
-set undodir=./.vim-undo//
-set undodir+=~/.vim/undo//
-set undofile
+set undodir+=~/.vim/undo/
+"set undofile
 
 " remove leading spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Auto Install vim-plug
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+" {{{ Plugins
+" Auto install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin()
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#auto_complete_delay = 50
-  let g:deoplete#complete_method = "omnifunc"
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#omni_patterns = {}
-
-" Elixir
-Plug 'elixir-lang/vim-elixir'
-
-" Go
-Plug 'fatih/vim-go'
-  let g:go_fmt_command = "goreturns"
-Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-
-" Puppet
-Plug 'rodjek/vim-puppet'
-
-" For other languages, automatically load SyntaxHighlighting
-" IMPORTANT: This must be BELOW the specific Plugins above!
-Plug 'sheerun/vim-polyglot'
-  let g:polyglot_disabled = ['elixir', 'go']
-
-" Run tests with varying granularity
-Plug 'janko-m/vim-test'
-  nmap <silent> <leader>T :TestNearest<CR>
-  nmap <silent> <leader>t :TestFile<CR>
-  nmap <silent> <leader>a :TestSuite<CR>
-  nmap <silent> <leader>l :TestLast<CR>
-  nmap <silent> <leader>g :TestVisit<CR>
-  " run tests in neoterm
-  let g:test#strategy = 'neovim'
-
-" :T
-Plug 'kassio/neoterm'
-
-" colors
+call plug#begin('~/.vim/plugged')
+" Theme setup
 Plug 'chriskempson/base16-vim'
-" Access colors present in 256 colorspace
-let base16colorspace=256
 
-" list buffers
-Plug 'bling/vim-bufferline'
+" Go setup
+Plug 'myitcv/govim'
 
-" Airline, cuz why not
+" Airline & co
+"Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
   let g:airline_theme = 'lucius'
@@ -117,21 +89,9 @@ Plug 'vim-airline/vim-airline-themes'
   let g:airline_branch_prefix = '⎇ '
   let g:airline_paste_symbol = '∥'
   let g:airline#extensions#tabline#enabled = 0
-
 Plug 'airblade/vim-gitgutter'
 
-Plug 'vim-syntastic/syntastic'
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_javascript_checkers = ['standard']
-  let g:syntastic_html_checkers = []
-  let g:syntastic_rust_checkers = ['rustc']
-  let g:syntastic_puppet_puppetlint_args = ['--no-80chars-check']
-  let g:syntastic_python_pylint_args = "--indent-string='  '"
-
+" Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_working_path_mode = 'a'
   let g:ctrlp_custom_ignore = {
@@ -142,11 +102,13 @@ let g:ctrlp_user_command = [
     \ 'find %s -type f'
     \ ]
 
+" VimWIKI
 Plug 'vimwiki/vimwiki'
   let g:vimwiki_hl_cb_checked = 1
   :nmap <Leader>wn <Plug>VimwikiNextLink
 
 call plug#end()
+" End Plugins }}}
 
 set background=dark
 syntax enable
@@ -159,13 +121,6 @@ endif
 " Remove highlights
 " Clear the search buffer when hitting return
 nnoremap <silent> \ :nohlsearch<cr>
-
-" hide/close terminal
-nnoremap <silent> ,th :call neoterm#close()<cr>
-" clear terminal
-nnoremap <silent> ,tl :call neoterm#clear()<cr>
-" kills the current job (send a <c-c>)
-nnoremap <silent> ,tc :call neoterm#kill()<cr>
 
 " Keybindings: Switch Buffers
 :nnoremap <Tab> :bnext<CR>
@@ -181,11 +136,16 @@ map <Down>  :echo "no!"<cr>
 inoremap jj <esc>
 inoremap jk <esc>
 
+" Open/Close the quickfix window
+nmap <silent> <buffer> <Leader>f :execute "GOVIMQuickfixDiagnostics" | cw | if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 | :wincmd p | endif<CR>
+imap <silent> <buffer> <F2> <C-O>:execute "GOVIMQuickfixDiagnostics" | cw | if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 | :wincmd p | endif<CR>
+
 " Plug Update/Upgrade
 command! PU PlugUpdate | PlugUpgrade
 
 """ Filetypes:
 augroup go
+  nmap <buffer> <silent> <Leader>h : <C-u>call GOVIMHover()<CR>
   autocmd!
   autocmd BufNewFile,BufRead *.go setlocal tabstop=4
   autocmd BufNewFile,BufRead *.go setlocal shiftwidth=4
