@@ -1,4 +1,4 @@
-[ -z "$__COMMONRC" ] || return
+if [ -n "$__COMMONRC" ]; then return; fi
 export __COMMONRC=loaded
 
 # Aliases
