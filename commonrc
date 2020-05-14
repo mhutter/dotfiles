@@ -22,7 +22,7 @@ alias hd="hexdump -C"
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 alias makepw='pwgen -s 32 64'
 alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
-alias cleanup-known-hosts="sed -i .bak -E '/^(159|116|88)/d' ~/.ssh/known_hosts"
+alias cleanup-known-hosts="sed -i .bak -E '/^(159|116|78|88)\./d' ~/.ssh/known_hosts"
 alias t=task
 
 _bup() {
