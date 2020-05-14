@@ -17,7 +17,6 @@ alias ldot='ls -ld .*'
 alias crêpe=grep
 alias a='atom -a .'
 alias be='bundle exec'
-alias bup='brew update && brew upgrade && brew cleanup'
 alias cwd='cd "$(pwd -P)"'
 alias hd="hexdump -C"
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
@@ -25,6 +24,18 @@ alias makepw='pwgen -s 32 64'
 alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
 alias cleanup-known-hosts="sed -i .bak -E '/^(159|116|88)/d' ~/.ssh/known_hosts"
 alias t=task
+
+_bup() {
+  echo -e "\033[0;33m==>\033[0m brew $@"
+  brew $@
+}
+
+bup() {
+  _bup update
+  _bup upgrade
+  _bup cask upgrade
+  _bup cleanup
+}
 
 # Kubernetes helpers
 alias kubens='kubectl config set-context --current --namespace'
