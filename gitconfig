@@ -36,3 +36,5 @@
 	cookiefile = /Users/mhutter/.gitcookies
 [rebase]
 	autoStash = true
+[rerere]
+	enabled = 1
