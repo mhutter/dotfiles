@@ -94,6 +94,9 @@ function ssh () {
   TERM=${TERM//screen\./}
   /usr/bin/ssh -t $@ "tmux attach || tmux new || bash"
 }
+sshc() {
+  awk '/Host /{print $2"\n"$3}' ~/.ssh/config | grep $@
+}
 
 sslcheck() {
   echo Q \
