@@ -46,3 +46,8 @@ while read -r cdir; do
   test -e "$target" && rm -r "$target"
   ln -sf "${dir}/config/${cdir}" "$target"
 done
+
+#
+# Link vim snippets
+#
+ln -sf "${dir}/UltiSnips" ~/.vim/UltiSnips

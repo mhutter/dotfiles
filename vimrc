@@ -37,6 +37,8 @@ set number relativenumber
 
 set updatetime=500
 set balloondelay=250
+set completeopt+=popup
+set completepopup=align:menu,border:off,highlight:Pmenu
 
 " When not in focus or in insert mode, use absolute line numbers
 " otherwise, use hybrid line numbers.
@@ -75,7 +77,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim'
 
 " Go setup
-Plug 'myitcv/govim'
+Plug 'govim/govim'
 
 " Airline & co
 "Plug 'bling/vim-bufferline'
@@ -106,6 +108,11 @@ let g:ctrlp_user_command = [
 Plug 'vimwiki/vimwiki'
   let g:vimwiki_hl_cb_checked = 1
   :nmap <Leader>wn <Plug>VimwikiNextLink
+  :nmap <Leader>td <Plug>VimwikiToggleListItem
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 " End Plugins }}}
