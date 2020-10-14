@@ -61,7 +61,7 @@ set smartcase
 set undodir+=~/.vim/undo/
 "set undofile
 
-" remove leading spaces on save
+" remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " {{{ Plugins
@@ -113,6 +113,10 @@ Plug 'vimwiki/vimwiki'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+  let g:terraform_fmt_on_save=1
 
 call plug#end()
 " End Plugins }}}

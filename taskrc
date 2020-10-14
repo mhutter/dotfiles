@@ -6,6 +6,7 @@ uda.priority.values=H,M,,L
 urgency.uda.priority.L.coefficient=-1.8
 
 urgency.user.tag.monitoring.coefficient=15.0
+urgency.uda.jirastatus.Backlog.coefficient=-10
 
 # Here is an example of entries that use the default, override and blank values
 #   variable=foo   -- By specifying a value, this overrides the default
@@ -34,6 +35,13 @@ include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
 
+# Theme customization
+color.tagged=
+#color.uda.priority.H=
+#color.uda.priority.M=
+#color.uda.priority.L=
+
+# Contexts
 context.vshn=+vshn
 context.home=-vshn
 
@@ -44,8 +52,6 @@ uda.jirasummary.type=string
 uda.jirasummary.label=Jira Summary
 uda.jiraurl.type=string
 uda.jiraurl.label=Jira URL
-uda.jiradescription.type=string
-uda.jiradescription.label=Jira Description
 uda.jiraid.type=string
 uda.jiraid.label=Jira Issue ID
 uda.jiraestimate.type=numeric

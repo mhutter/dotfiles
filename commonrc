@@ -1,6 +1,8 @@
 if [ -n "$__COMMONRC" ]; then return; fi
 export __COMMONRC=loaded
 
+alias commodore='docker run --interactive=true --tty --rm --user="$(id -u)" --volume "${HOME}/.ssh:/app/.ssh:ro" --volume "${HOME}/.gitconfig:/app/.gitconfig:ro" --volume "${PWD}:/app/data" --volume "${SSH_AUTH_SOCK}:/ssh-auth-sock" --workdir /app/data -e SSH_AUTH_SOCK=/ssh-auth-sock -e COMMODORE_API_URL=$COMMODORE_API_URL -e COMMODORE_GLOBAL_GIT_BASE=$COMMODORE_GLOBAL_GIT_BASE -e COMMODORE_API_TOKEN=$COMMODORE_API_TOKEN projectsyn/commodore:v0.3.0'
+
 # Aliases
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -33,7 +35,6 @@ _bup() {
 bup() {
   _bup update
   _bup upgrade
-  _bup cask upgrade
   _bup cleanup
 }
 
@@ -51,6 +52,15 @@ if [[ ! -f /etc/arch-release ]]; then
   if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
     eval "$(<~/.ssh-agent-thing)"
   fi
+fi
+
+# GPG Agent
+GPG_TTY=$(tty)
+export GPG_TTY
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+    . "${HOME}/.gpg-agent-info"
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
 fi
 
 # Load various tools.

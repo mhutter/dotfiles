@@ -3,7 +3,7 @@
 [color]
 	ui = auto
 [alias]
-	ci = commit -v -s
+	ci = commit -v
 	co = checkout
 	st = status
 	s = status -s
@@ -20,6 +20,7 @@
 	squ = commit --squash
 	ri = rebase -i --autosquash
 	pp = pull --prune
+	brnach = branch
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -29,7 +30,7 @@
 [pull]
 	rebase = true
 [commit]
-	gpgsign = true
+	gpgsign = false
 [include]
 	path = ~/.gitconfig.local
 [http]

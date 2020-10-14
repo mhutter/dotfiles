@@ -3,12 +3,14 @@
 export __PROFILE=loaded
 
 export EDITOR=vim
-export PATH="${HOME}/bin:${PATH}"
+export FLUX_FORWARD_NAMESPACE=flux
 export LANG=en_US.UTF-8
 export LANGUAGE=$LANG
 export LC_ALL=$LANG
 export LC_CTYPE=$LANG
+export LESS='-R -F -X'
 export NVM_DIR="$HOME/.nvm"
+export PATH="${HOME}/bin:${PATH}"
 
 # load local env vars
 # shellcheck source=/dev/null
@@ -21,7 +23,6 @@ paths=(
   "${HOME}/.cargo/bin"
   "${HOME}/Library/Python/2.7/bin"
   "$(go env GOPATH)/bin"
-  "/usr/local/opt/ruby/bin"
 )
 for p in "${paths[@]}"; do
   test -d "$p" && PATH="${p}:${PATH}"
