@@ -32,14 +32,17 @@ http-cache
 node_modules
 ownCloud
 vendor
+/Applications/*.app
+
+# Mount points, `--one-file-systems` seems to not work as intended...
+/System/Volumes
+/private/var/vm
 
 # MacOS Time Machine exclusions
 # /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist
-.MobileBackups
-.MobileBackups.trash
-.Spotlight-V100
-.Trashes
+/.file
 /.MobileBackups
+/MobileBackups.trash
 /.MobileBackups.trash
 /.Spotlight-V100
 /.TemporaryItems
@@ -47,70 +50,69 @@ vendor
 /.com.apple.backupd.mvlist.plist
 /.fseventsd
 /.hotfiles.btree
-/.vol
 /Backups.backupdb
 /Desktop DB
 /Desktop DF
-/Library/Caches
-/Library/Logs
-/Library/Updates
-/MobileBackups.trash
-/Network
 /Network/Servers
+/Library/Updates
 /Previous Systems
-/System/Library/Caches
-/System/Library/Extensions/Caches
-/Users/Guest
 /Users/Shared/SC Info
-/Volumes
-/automount
-/cores
+/Users/Guest
 /dev
 /home
 /net
-/private/Network
-/private/tftpboot
-/private/tmp
-/private/var/automount
+/private/var/db/com.apple.backupd.backupVerification
+/private/var/db/efw_cache
 /private/var/db/Spotlight
 /private/var/db/Spotlight-V100
-/private/var/db/com.apple.backupd.backupVerification
-/private/var/db/dhcpclient
-/private/var/db/efw_cache
-/private/var/db/fseventsd
 /private/var/db/systemstats
-/private/var/folders
 /private/var/lib/postfix/greylist.db
-/private/var/log
+/Volumes
+/Network
+/automount
+/.vol
+/tmp
+/cores
+/private/tmp
+/private/Network
+/private/tftpboot
+/private/var/automount
+/private/var/folders
 /private/var/run
+/private/var/tmp
+/private/var/vm
+/private/var/db/dhcpclient
+/private/var/db/fseventsd
+/Library/Caches
+/Library/Logs
+/System/Library/Caches
+/System/Library/Extensions/Caches
+/private/var/log
 /private/var/spool/cups
 /private/var/spool/fax
 /private/var/spool/uucp
-/private/var/tmp
-/private/var/vm
-/tmp
 Library/Application Support/SyncServices/data.version
 Library/Application Support/Ubiquity
 Library/Caches
 Library/Logs
-Library/Mail/AvailableFeeds
 Library/Mail/Envelope Index
 Library/Mail/Envelope Index-journal
+Library/Mail/AvailableFeeds
 Library/Mail/Metadata/BackingStoreUpdateJournal
-Library/Mail/V2/MailData/AvailableFeeds
-Library/Mail/V2/MailData/BackingStoreUpdateJournal
 Library/Mail/V2/MailData/Envelope Index
 Library/Mail/V2/MailData/Envelope Index-journal
+Library/Mail/V2/MailData/AvailableFeeds
+Library/Mail/V2/MailData/BackingStoreUpdateJournal
 Library/Mail/V2/MailData/Envelope Index-shm
 Library/Mail/V2/MailData/Envelope Index-wal
 Library/Mirrors
 Library/PubSub/Database
 Library/PubSub/Downloads
 Library/PubSub/Feeds
-Library/Safari/HistoryIndex.sk
 Library/Safari/Icons.db
 Library/Safari/WebpageIcons.db
-MobileBackups.trash
+Library/Safari/HistoryIndex.sk
+# END MacOS Time Machine exclusions
 
 # Excludes from permission errors
 /.DocumentRevisions-V100
