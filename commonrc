@@ -25,6 +25,9 @@ alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
 alias cleanup-known-hosts="sed -i .bak -E '/^(159|116|78|88)\./d' ~/.ssh/known_hosts"
 alias t=task
 
+alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
+alias argo-port-forward='kubectl -n syn port-forward svc/argocd-server 8443:443'
+
 _bup() {
   echo -e "\033[0;33m==>\033[0m brew $@"
   brew $@
