@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [alias]
-	ci = commit -v
+	ci = commit -v -s
 	co = checkout
 	st = status
 	s = status -s
@@ -42,3 +42,5 @@
 	enabled = 1
 [init]
 	defaultBranch = main
+[diff "sopsdiffer"]
+	textconv = sops -d

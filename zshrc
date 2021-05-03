@@ -32,16 +32,17 @@ p() { cd "${HOME}/Projects/$1" || return 1; }
 _p() { _files -W ~/Projects -/; }
 compdef _p p
 
+dev() { cd "${HOME}/Developer/$1" || return 1; }
+_dev() { _files -W ~/Developer -/; }
+compdef _dev dev
+
 bindkey -s '^F' '^Usource <(oc completion zsh)\n'
 
 # load some initialization which is common for all shells
 [ -f "${HOME}/.commonrc" ] && source "${HOME}/.commonrc"
 
 # load work-specifics
-find "$HOME" -maxdepth 1 -name '.*-vshn' |
-while read -r file; do
-  source "$file"
-done
+[ -f "${HOME}/.zshrc-vshn" ] && source "${HOME}/.zshrc-vshn"
 
 # Cleanup env vars and make sure rc-files are reloaded in tmux
 for v in $(env | grep '^__.*=loaded$' | cut -d= -f1); do
@@ -55,18 +56,29 @@ plugins=(
   /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
   /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  "${HOME}/src/google-cloud-sdk/completion.zsh.inc"
-  "${HOME}/src/google-cloud-sdk/path.zsh.inc"
-  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 )
 for p in "${plugins[@]}"; do
   test -f "$p" && source "$p"
 done
 :
 
-# added by travis gem
-[ -f /Users/mhutter/.travis/travis.sh ] && source /Users/mhutter/.travis/travis.sh
+# SSH completion
+function buildSSHCompletion() {
+  h=()
+  if [[ -r ~/.ssh/sshop_config ]]; then
+    h=($h ${(s. .)${${(@M)${(f)"$(cat ~/.ssh/sshop_config)"}:#Host *}#Host }:#*[*?]*})
+  fi
+  if [[ -r ~/.ssh/config ]]; then
+    h=($h ${(s. .)${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
+  fi
+  if [[ $#h -gt 0 ]]; then
+    zstyle ':completion:*:ssh:*' hosts $h
+    zstyle ':completion:*:slogin:*' hosts $h
+    zstyle ':completion:*:scp:*' hosts $h
+  fi
+}
+
+buildSSHCompletion
 
 [ -f /usr/local/bin/mc ] && {
   autoload -U +X bashcompinit && bashcompinit

@@ -3,17 +3,18 @@
 *.swp
 .bundle/ruby
 .cache
+.cargo
 .docker
 .dropbox
 .gem
-.go/bin
-.go/pkg
 .local/share/virtualenvs
 .m2
 .meteor
 .minikube
 .minishift
 .npm
+.node-gyp
+.rustup
 .rbenv
 .vagrant
 .vagrant.d
@@ -28,6 +29,7 @@ VirtualBox VMs
 cache
 go/bin
 go/pkg
+go/src
 http-cache
 node_modules
 ownCloud
@@ -248,3 +250,5 @@ Library/Safari/HistoryIndex.sk
 /usr/sbin/authserver
 /usr/sbin/cupsd
 /usr/sbin/visudo
+/Users/mhutter/Library/Containers/com.apple.mail/Data/DataVaults
+/Users/mhutter/Library/Google/GoogleSoftwareUpdate/Stats/Keystone.stats

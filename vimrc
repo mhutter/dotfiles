@@ -10,7 +10,7 @@ set nocompatible
 filetype plugin on
 let g:mapleader=' '
 set backupcopy=yes  " make sure inotify can pick up file changes
-set backspace=2  " make sure characters can be deleted in insert mode
+set backspace=2     " make sure characters can be deleted in insert mode
 
 """ Tabs #tabs
 " - Two spaces wide
@@ -35,11 +35,6 @@ set mouse=""
 set title
 set number relativenumber
 
-set updatetime=500
-set balloondelay=250
-set completeopt+=popup
-set completepopup=align:menu,border:off,highlight:Pmenu
-
 " When not in focus or in insert mode, use absolute line numbers
 " otherwise, use hybrid line numbers.
 augroup numbertoggle
@@ -58,8 +53,8 @@ set incsearch
 set ignorecase smartcase
 set smartcase
 
-set undodir+=~/.vim/undo/
 "set undofile
+set undodir+=~/.vim/undo/
 
 " remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -80,7 +75,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'govim/govim'
 
 " Airline & co
-"Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
   let g:airline_theme = 'lucius'
@@ -110,23 +104,13 @@ Plug 'vimwiki/vimwiki'
   :nmap <Leader>wn <Plug>VimwikiNextLink
   :nmap <Leader>td <Plug>VimwikiToggleListItem
 
-" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-" Terraform
-Plug 'hashivim/vim-terraform'
-  let g:terraform_fmt_on_save=1
-
 call plug#end()
 " End Plugins }}}
 
 set background=dark
 syntax enable
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+let base16colorspace=256
+colorscheme base16-oceanicnext
 
 """ Keyboard
 " Remove highlights

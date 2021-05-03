@@ -22,20 +22,22 @@ alias hd="hexdump -C"
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 alias makepw='pwgen -s 32 64'
 alias npmsearch='node --max-old-space-size=4000 /usr/local/bin/npm search'
-alias cleanup-known-hosts="sed -i .bak -E '/^(159|116|78|88)\./d' ~/.ssh/known_hosts"
+alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d' ~/.ssh/known_hosts"
 alias t=task
+alias ls='exa --group-directories-first -g --time-style long-iso'
+alias code=codium
 
 alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
 alias argo-port-forward='kubectl -n syn port-forward svc/argocd-server 8443:443'
 
 _bup() {
-  echo -e "\033[0;33m==>\033[0m brew $@"
+  echo -e "\033[30;1m[$(date +%T)] \033[0;33mbrew $@\033[0m"
   brew $@
 }
 
 bup() {
-  _bup update
-  _bup upgrade
+  _bup update && \
+  _bup upgrade && \
   _bup cleanup
 }
 
@@ -46,59 +48,25 @@ alias kaf='kubectl apply -f'
 alias ks='kubeseal --format yaml --cert'
 
 # SSH-Agent
-if [[ ! -f /etc/arch-release ]]; then
-  if ! pgrep -u"$USER" ssh-agent >/dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-  fi
-  if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
-    eval "$(<~/.ssh-agent-thing)"
-  fi
-fi
+#if [[ ! -f /etc/arch-release ]]; then
+#  if ! pgrep -u"$USER" ssh-agent >/dev/null; then
+#    ssh-agent > ~/.ssh-agent-thing
+#  fi
+#  if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
+#    eval "$(<~/.ssh-agent-thing)"
+#  fi
+#fi
 
 # GPG Agent
-GPG_TTY=$(tty)
-export GPG_TTY
-if [ -f "${HOME}/.gpg-agent-info" ]; then
-    . "${HOME}/.gpg-agent-info"
-    export GPG_AGENT_INFO
-    export SSH_AUTH_SOCK
+if [ "$(uname -s)" = "Darwin" ]; then
+  GPG_TTY=$(tty)
+  export GPG_TTY
+  if [ -f "${HOME}/.gpg-agent-info" ]; then
+      . "${HOME}/.gpg-agent-info"
+      export GPG_AGENT_INFO
+      export SSH_AUTH_SOCK
+  fi
 fi
-
-# Load various tools.
-# Loading thos autocompletion takes forever, so we lazy-load them! :D
-_shell() {
-  ps -o command= -p $$ | sed 's/^-//'
-}
-
-oc() {
-  if [ -z "$__oc" ]; then
-    source <(command oc completion "$(_shell)")
-    export __oc=y
-  fi
-  command oc "$@"
-}
-nvm() {
-  if [ -z "$__nvm" ]; then
-    files=(
-      /usr/lib/nvm/nvm.sh
-      /usr/local/opt/nvm/nvm.sh
-    )
-    for f in $files; do
-      test -f "$f" && source "$f"
-    done
-    export __nvm=y
-  fi
-  command nvm "$@"
-}
-travis() {
-  if [ -z "$__travis" ]; then
-    source ~/.travis/travis.sh
-    export __travis=y
-  fi
-  command travis "$@"
-}
-
-source ~/.docker-helpers.sh
 
 function ssh () {
   TERM=${TERM//-unicode-/-}
@@ -106,7 +74,7 @@ function ssh () {
   /usr/bin/ssh -t $@ "tmux attach || tmux new || bash"
 }
 sshc() {
-  awk '/Host /{print $2"\n"$3}' ~/.ssh/config | grep $@
+  awk '/Host /{print $2"\n"$3}' ~/.ssh/config | grep "$@"
 }
 
 sslcheck() {
@@ -141,4 +109,28 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# Various helpers
+
+commodore() {
+  docker run \
+    -it \
+    --rm \
+    --user="0" \
+    --env "COMMODORE_API_URL=$COMMODORE_API_URL" \
+    --env "COMMODORE_API_TOKEN=$COMMODORE_API_TOKEN" \
+    --env SSH_AUTH_SOCK=/tmp/ssh_agent.sock \
+    --volume "/run/host-services/ssh-auth.sock:/tmp/ssh_agent.sock" \
+    --volume "${HOME}/.ssh/known_hosts:/app/.ssh/known_hosts:ro" \
+    --volume "${HOME}/.gitconfig:/app/.gitconfig:ro" \
+    --volume "${PWD}:/app/data" \
+    --workdir /app/data \
+    projectsyn/commodore:latest \
+    "$@"
+}
+
+genisoimage() {
+  docker run -it --rm -v "$(pwd):/work" mhutter/genisoimage $@
+}
+
 # vim: ft=sh

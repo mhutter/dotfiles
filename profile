@@ -19,23 +19,21 @@ export PATH="${HOME}/bin:${PATH}"
 # various PATH locations
 paths=(
   "${HOME}/.yarn/bin"
-  /usr/local/opt/python/libexec/bin
   "${HOME}/.cargo/bin"
-  "${HOME}/Library/Python/2.7/bin"
-  "$(go env GOPATH)/bin"
 )
 for p in "${paths[@]}"; do
   test -d "$p" && PATH="${p}:${PATH}"
 done
 export PATH
 
-which ruby &>/dev/null && \
-  GEMS_PATH="$(ruby -e 'puts Gem::user_dir')/bin" && \
-  test -d "$GEMS_PATH" && PATH="${GEMS_PATH}:${PATH}"
+which go &>/dev/null && \
+  PATH="$(go env GOPATH)/bin:${PATH}" && \
+  export PATH
 
 which rustup &>/dev/null && \
   RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" && \
   export RUST_SRC_PATH
 
 # various sources
-[ -d "/usr/local/opt/libxml2/lib/pkgconfig" ] && export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+[ -d "/usr/local/opt/libxml2/lib/pkgconfig" ] && \
+  export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
