@@ -68,7 +68,7 @@ fi
 function ssh () {
   TERM=${TERM//-unicode-/-}
   TERM=${TERM//screen\./}
-  /usr/bin/ssh -t $@ "tmux attach || tmux new || bash"
+  /usr/bin/ssh -t $@ "tmux new-session -A -s mh || bash"
 }
 sshc() {
   awk '/Host /{print $2"\n"$3}' ~/.ssh/config | grep "$@"
