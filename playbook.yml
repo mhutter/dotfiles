@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Find dotfiles
+      find:
+        paths: ./files
+        recurse: true
+      register: dotfiles
+
+    - name: Link dotfiles
+      file:
+        path: '~/.{{ item[6:] }}'
+        src: '{{ playbook_dir }}/{{ item }}'
+        state: link
+      loop: '{{ dotfiles.files | map(attribute="path") }}'
