@@ -23,6 +23,7 @@ alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d'
 alias t=task
 which exa &>/dev/null && alias ls='exa --group-directories-first -g --time-style long-iso'
 alias code=codium
+which podman &>/dev/null && alias docker=podman
 
 alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
 alias argo-port-forward='kubectl -n syn port-forward svc/argocd-server 8443:443'
@@ -122,7 +123,7 @@ commodore() {
     --volume "${HOME}/.gitconfig:/app/.gitconfig:ro" \
     --volume "${PWD}:/app/data" \
     --workdir /app/data \
-    projectsyn/commodore:latest \
+    docker.io/projectsyn/commodore:latest \
     "$@"
 }
 

@@ -2,10 +2,13 @@
 - hosts: localhost
   gather_facts: false
   become: true
+  vars:
+    user: mh
   tasks:
     - name: Install packages
       package:
         name: '{{ pkgs }}'
+      tags: package
       vars:
         pkgs:
           # Utility
@@ -28,6 +31,9 @@
           - lightdm-webkit-theme-litarvan
           - plasma-desktop
           - xorg-server
+          # Applications
+          - chromium
+          - podman
 
     - name: Set greeter
       ini_file:
@@ -47,3 +53,23 @@
       service:
         name: lightdm
         enabled: true
+
+    - name: Set up podman for rootless mode
+      lineinfile:
+        path: '/etc/sub{{ item }}'
+        line: '{{ user }}:10000:65536'
+        regexp: '^{{ user }}:'
+        create: true
+        owner: root
+        group: root
+        mode: '0644'
+      loop: [uid, gid]
+
+    - name: Configure registries
+      copy:
+        dest: /etc/containers/registries.conf
+        content: |
+          [[registry]]
+          location = "docker.io"
+          [[registry.mirror]]
+          location = "registry.mhnet.dev"
