@@ -45,14 +45,14 @@ alias kaf='kubectl apply -f'
 alias ks='kubeseal --format yaml --cert'
 
 # SSH-Agent
-#if [[ ! -f /etc/arch-release ]]; then
-#  if ! pgrep -u"$USER" ssh-agent >/dev/null; then
-#    ssh-agent > ~/.ssh-agent-thing
-#  fi
-#  if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f ~/.ssh-agent-thing ]]; then
-#    eval "$(<~/.ssh-agent-thing)"
-#  fi
-#fi
+if [[ -f /etc/arch-release ]]; then
+  if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    ssh-agent -t 12h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+  fi
+  if [[ ! "$SSH_AGENT_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+  fi
+fi
 
 # GPG Agent
 if [ "$(uname -s)" = "Darwin" ]; then
