@@ -1,0 +1,25 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: podman
+  tags: package
+
+- name: Set up podman for rootless mode
+  ansible.builtin.lineinfile:
+    path: "/etc/sub{{ item }}"
+    line: "{{ user }}:10000:65536"
+    regexp: "^{{ user }}:"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  loop: [uid, gid]
+
+- name: Configure registries
+  ansible.builtin.copy:
+    dest: /etc/containers/registries.conf
+    content: |
+      [[registry]]
+      location = "docker.io"
+      [[registry.mirror]]
+      location = "registry.mhnet.dev"

@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: false
+  become: true
+  vars:
+    user: mh
+  roles:
+    - name: arch
+      tags: [arch]
+    - name: podman
+      tags: [podman]
