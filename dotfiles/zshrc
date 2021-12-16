@@ -13,16 +13,6 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(git docker)
 source "${ZSH}/oh-my-zsh.sh"
 
-# Open new gnome-terminal windows with the same working dir
-if [ -d /dev/shm ]; then
-  cd $(<>/dev/shm/${USER}-pwd)
-  __cd() {
-    \cd "$@"
-    pwd >/dev/shm/${USER}-pwd
-  }
-  alias cd=__cd
-fi
-
 # Code and Projects
 c() { cd "${HOME}/code/$1" || return 1; }
 _c() { _files -W ~/code -/; }

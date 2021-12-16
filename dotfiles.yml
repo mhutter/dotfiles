@@ -4,13 +4,13 @@
   tasks:
     - name: Find dotfiles
       find:
-        paths: ./files
+        paths: ./dotfiles
         recurse: true
       register: dotfiles
 
     - name: Link dotfiles
       file:
-        path: '~/.{{ item[6:] }}'
-        src: '{{ playbook_dir }}/{{ item }}'
+        path: "~/.{{ item[9:] }}"
+        src: "{{ playbook_dir }}/{{ item }}"
         state: link
       loop: '{{ dotfiles.files | map(attribute="path") }}'

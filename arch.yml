@@ -25,13 +25,12 @@
           - go
           - rustup
           # Desktop environment
-          - konsole
           - lightdm
           - lightdm-webkit2-greeter
           - lightdm-webkit-theme-litarvan
-          - plasma-desktop
           - xorg-server
           # Applications
+          - alacritty
           - chromium
           - podman
 

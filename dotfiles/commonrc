@@ -13,16 +13,15 @@ fi
 
 alias ll='ls -laF'
 
+alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d' ~/.ssh/known_hosts"
+alias code=codium
 alias crêpe=grep
-alias be='bundle exec'
 alias cwd='cd "$(pwd -P)"'
-which hd &>/dev/null || alias hd="hexdump -C"
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 alias makepw='pwgen -s 32 64'
-alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d' ~/.ssh/known_hosts"
 alias t=task
 which exa &>/dev/null && alias ls='exa --group-directories-first -g --time-style long-iso'
-alias code=codium
+which hd &>/dev/null || alias hd="hexdump -C"
 which podman &>/dev/null && alias docker=podman
 
 alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
@@ -93,15 +92,6 @@ temp() {
   cd "$P"
 }
 
-gitp() {
-  if [ -z "$1" ]; then
-    ls -l ~/.gitconfig.local
-    return
-  fi
-
-  ln -sfv ".gitconfig.${1}" ~/.gitconfig.local
-}
-
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
@@ -125,10 +115,6 @@ commodore() {
     --workdir /app/data \
     docker.io/projectsyn/commodore:latest \
     "$@"
-}
-
-genisoimage() {
-  docker run -it --rm -v "$(pwd):/work" mhutter/genisoimage $@
 }
 
 # vim: ft=sh
