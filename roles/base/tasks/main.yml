@@ -1,0 +1,19 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ pkgs }}"
+  tags: package
+  vars:
+    pkgs:
+      # Utility
+      - bat
+      - bind
+      - exa
+      - git
+      - htop
+      - inetutils
+      - openssh
+      - tmux
+      - which
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting

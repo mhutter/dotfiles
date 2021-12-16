@@ -1,0 +1,10 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ pkgs }}"
+  tags: package
+  vars:
+    pkgs:
+      # Drivers
+      - intel-media-driver
+      - sof-firmware

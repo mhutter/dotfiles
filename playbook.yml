@@ -7,5 +7,9 @@
   roles:
     - name: arch
       tags: [arch]
+    - name: base
+      tags: [base]
+    - name: lenovo
+      tgas: [lenovo]
     - name: podman
       tags: [podman]

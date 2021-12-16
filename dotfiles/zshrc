@@ -22,8 +22,8 @@ p() { cd "${HOME}/Projects/$1" || return 1; }
 _p() { _files -W ~/Projects -/; }
 compdef _p p
 
-dev() { cd "${HOME}/Developer/$1" || return 1; }
-_dev() { _files -W ~/Developer -/; }
+dev() { cd "${HOME}/dev/$1" || return 1; }
+_dev() { _files -W ~/dev -/; }
 compdef _dev dev
 
 bindkey -s '^F' '^Usource <(oc completion zsh)\n'

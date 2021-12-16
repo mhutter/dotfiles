@@ -5,23 +5,18 @@
   tags: package
   vars:
     pkgs:
-      # Utility
-      - bat
-      - bind
-      - exa
-      - htop
-      - inetutils
-      - which
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
       # Development tools
       - base-devel
       # Desktop environment
-      - lightdm
-      - lightdm-webkit2-greeter
-      - lightdm-webkit-theme-litarvan
-      - xorg-server
       - alacritty
+      - i3-wm
+      - i3blocks
+      - i3lock
+      - i3status
+      - lightdm
+      - lightdm-webkit-theme-litarvan
+      - lightdm-webkit2-greeter
+      - xorg-server
 
 - name: Set greeter
   ansible.builtin.ini_file:
