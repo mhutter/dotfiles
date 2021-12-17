@@ -1,0 +1,11 @@
+Section "Monitor"
+  Identifier "{{ external_monitor }}"
+  Option "PreferredMode" "3440x1440"
+  Option "Primary" "1"
+EndSection
+
+Section "Monitor"
+  Identifier "{{ internal_monitor }}"
+  Option "PreferredMode" "1920x1200"
+  Option "Below" "{{ external_monitor }}"
+EndSection

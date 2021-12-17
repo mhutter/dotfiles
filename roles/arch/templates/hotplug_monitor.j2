@@ -5,8 +5,8 @@ exec &>>/home/{{ user }}/log/hotplug_monitor.log
 
 export DISPLAY=:0
 export XAUTHORITY=/home/{{ user }}/.Xauthority
-INTERNAL=eDP-1
-MONITOR=DP-3
+INTERNAL={{ internal_monitor }}
+MONITOR={{ external_monitor }}
 
 wait_for_monitor() {
   while sleep .1; do
@@ -28,3 +28,5 @@ else
     --output "$MONITOR" --off
 
 fi
+
+feh --bg-fill /home/mh/wallpaper.png

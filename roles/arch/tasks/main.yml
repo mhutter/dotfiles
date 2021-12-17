@@ -63,3 +63,11 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Fix screen setup on boot
+  ansible.builtin.template:
+    src: templates/xorg-resolution-fix.conf.j2
+    dest: /etc/X11/xorg.conf.d/52-resolution-fix.conf
+    owner: root
+    group: root
+    mode: "0644"
