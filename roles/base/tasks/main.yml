@@ -18,6 +18,12 @@
       - zsh-autosuggestions
       - zsh-syntax-highlighting
 
+      # Programming languages
+      - go
+      - python
+      - python-pip
+      - rustup
+
 - name: Ensure some directories exists
   ansible.builtin.file:
     path: "/home/{{ user }}/{{ item }}"
