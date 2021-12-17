@@ -22,6 +22,12 @@
       - bluez
       - bluez-utils
 
+- name: Configure DNS resolution
+  ansible.builtin.file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+
 - name: Set greeter
   ansible.builtin.ini_file:
     path: /etc/lightdm/lightdm.conf

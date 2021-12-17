@@ -65,6 +65,10 @@ if [ "$(uname -s)" = "Darwin" ]; then
   fi
 fi
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
+
 function ssh () {
   TERM=${TERM//-unicode-/-}
   TERM=${TERM//screen\./}
