@@ -10,7 +10,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="mhutter"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git docker)
+plugins=(git kubectl)
 source "${ZSH}/oh-my-zsh.sh"
 
 # Code and Projects
@@ -21,6 +21,9 @@ compdef _c c
 p() { cd "${HOME}/Projects/$1" || return 1; }
 _p() { _files -W ~/Projects -/; }
 compdef _p p
+da() { cd "${HOME}/Projects/vshn/pacco/data/$1" || return 1; }
+_da() { _files -W ~/Projects/vshn/pacco/data -/; }
+compdef _da da
 
 dev() { cd "${HOME}/dev/$1" || return 1; }
 _dev() { _files -W ~/dev -/; }

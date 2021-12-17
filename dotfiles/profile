@@ -13,12 +13,13 @@ export PATH="${HOME}/bin:${PATH}"
 
 # load local env vars
 # shellcheck source=/dev/null
-[ -f "${HOME}/.env" ] && source "${HOME}/.env"
+[ -f "${HOME}/.profile.local" ] && source "${HOME}/.profile.local"
 
 # various PATH locations
 paths=(
   "${HOME}/.yarn/bin"
   "${HOME}/.cargo/bin"
+  "${HOME}/.local/bin"
 )
 for p in "${paths[@]}"; do
   test -d "$p" && PATH="${p}:${PATH}"

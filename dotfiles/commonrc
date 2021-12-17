@@ -121,4 +121,8 @@ commodore() {
     "$@"
 }
 
+cluster() {
+  mv ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config
+}
+
 # vim: ft=sh
