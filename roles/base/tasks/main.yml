@@ -17,3 +17,12 @@
       - which
       - zsh-autosuggestions
       - zsh-syntax-highlighting
+
+- name: Ensure some directories exists
+  ansible.builtin.file:
+    path: "/home/{{ user }}/{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0750"
+  loop: [bin, log]

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -e -u
+
+exec &>>/home/{{ user }}/log/hotplug_monitor.log
+
+export DISPLAY=:0
+export XAUTHORITY=/home/{{ user }}/.Xauthority
+INTERNAL=eDP-1
+MONITOR=DP-3
+
+wait_for_monitor() {
+  while sleep .1; do
+    xrandr | grep -q "$MONITOR connected" && return
+  done
+}
+
+STATUS="$(cat "/sys/class/drm/card0-${MONITOR}/status")"
+
+if [ "$STATUS" == "connected" ]; then
+  wait_for_monitor
+  xrandr \
+    --output "$MONITOR" --auto --primary \
+    --output "$INTERNAL" --off
+
+else
+  xrandr \
+    --output "$INTERNAL" --auto --primary \
+    --output "$MONITOR" --off
+
+fi

@@ -14,7 +14,7 @@ fi
 alias ll='ls -laF'
 
 alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d' ~/.ssh/known_hosts"
-alias code=codium
+which code &>/dev/null ^^ alias code=codium
 alias crêpe=grep
 alias cwd='cd "$(pwd -P)"'
 alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"

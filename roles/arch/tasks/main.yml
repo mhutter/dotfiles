@@ -9,7 +9,7 @@
       - base-devel
       # Desktop environment
       - alacritty
-      - i3-wm
+      - i3-gaps
       - i3blocks
       - i3lock
       - i3status
@@ -17,6 +17,10 @@
       - lightdm-webkit-theme-litarvan
       - lightdm-webkit2-greeter
       - xorg-server
+
+      # Bluetooth
+      - bluez
+      - bluez-utils
 
 - name: Set greeter
   ansible.builtin.ini_file:
@@ -36,3 +40,26 @@
   ansible.builtin.service:
     name: lightdm
     enabled: true
+
+- name: Enable Bluetooth on start
+  ansible.builtin.ini_file:
+    path: /etc/bluetooth/main.conf
+    section: Policy
+    option: AutoEnable
+    value: "true"
+
+- name: Install hotplug_monitor
+  ansible.builtin.template:
+    src: templates/hotplug_monitor.j2
+    dest: "/home/{{ user }}/bin/hotplug_monitor"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0755"
+
+- name: Install hotplug_monitor udev rule
+  ansible.builtin.template:
+    src: templates/dock-udev.rules.j2
+    dest: /etc/udev/rules.d/80-dock.rules
+    owner: root
+    group: root
+    mode: "0644"

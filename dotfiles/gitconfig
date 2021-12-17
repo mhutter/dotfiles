@@ -1,5 +1,6 @@
 [user]
 	name = Manuel Hutter
+	email = manuel@hutter.io
 	signingkey = 3D7A6B26F12CD714
 [color]
 	ui = auto
