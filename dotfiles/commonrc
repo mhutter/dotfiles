@@ -27,6 +27,10 @@ which podman &>/dev/null && alias docker=podman
 alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
 alias argo-port-forward='kubectl -n syn port-forward svc/argocd-server 8443:443'
 
+# load local env vars
+# shellcheck source=/dev/null
+[ -f "${HOME}/.commonrc.local" ] && source "${HOME}/.commonrc.local"
+
 _bup() {
   echo -e "\033[30;1m[$(date +%T)] \033[0;33mbrew $*\033[0m"
   brew "$*"
