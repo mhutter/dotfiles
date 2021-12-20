@@ -112,16 +112,16 @@ commodore() {
   docker run \
     -it \
     --rm \
-    --user="0" \
+    --user "0" \
     --env "COMMODORE_API_URL=$COMMODORE_API_URL" \
     --env "COMMODORE_API_TOKEN=$COMMODORE_API_TOKEN" \
-    --env SSH_AUTH_SOCK=/tmp/ssh_agent.sock \
-    --volume "/run/host-services/ssh-auth.sock:/tmp/ssh_agent.sock" \
+    --env "SSH_AUTH_SOCK=/tmp/ssh_agent.sock" \
+    --volume "${SSH_AUTH_SOCK}:/tmp/ssh_agent.sock" \
     --volume "${HOME}/.ssh/known_hosts:/app/.ssh/known_hosts:ro" \
     --volume "${HOME}/.gitconfig:/app/.gitconfig:ro" \
     --volume "${PWD}:/app/data" \
     --workdir /app/data \
-    docker.io/projectsyn/commodore:latest \
+    "docker.io/projectsyn/commodore:${COMMODORE_VERSION:=latest}" \
     "$@"
 }
 
