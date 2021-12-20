@@ -24,6 +24,10 @@
       - python-pip
       - rustup
 
+      # fonts
+      - awesome-terminal-fonts
+      - ttf-dejavu
+
 - name: Ensure some directories exists
   ansible.builtin.file:
     path: "/home/{{ user }}/{{ item }}"

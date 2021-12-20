@@ -9,6 +9,7 @@
       - base-devel
       # Desktop environment
       - alacritty
+      - feh
       - i3-gaps
       - i3blocks
       - i3lock
