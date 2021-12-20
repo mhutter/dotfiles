@@ -1,1 +1,7 @@
 AddKeysToAgent yes
+ControlMaster auto
+ControlPath ~/.ssh/%C
+
+Host rasputin
+  User mhutter
+  Hostname rasputin.fritz.box
