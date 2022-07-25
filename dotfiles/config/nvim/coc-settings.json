@@ -1,0 +1,19 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "rust-analyzer": {
+    "checkOnSave": {
+      "command": "clippy"
+    },
+    "diagnostics": {
+      "disabled": ["type-mismatch"]
+    }
+  },
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true
+}
