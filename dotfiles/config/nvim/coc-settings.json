@@ -1,4 +1,5 @@
 {
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "rust",
     "javascript",
@@ -6,14 +7,26 @@
     "typescript",
     "typescriptreact"
   ],
+  "tsserver.formatOnType": true,
   "rust-analyzer": {
     "checkOnSave": {
       "command": "clippy"
-    },
-    "diagnostics": {
-      "disabled": ["type-mismatch"]
     }
   },
-  "tsserver.formatOnType": true,
-  "coc.preferences.formatOnType": true
+  "languageserver": {
+    "jsonnet": {
+      "command": "jsonnet-language-server",
+      "args": [
+        "-t",
+        "--jpath", "/Users/mhutter/Developer/commodore/commodore",
+        "--jpath", "/home/mh/Projects/syn/commodore/commodore",
+        "--jpath", "/home/mh/dev/syn/dependencies",
+        "--jpath", "/home/mh/Projects/syn/commodore/venv/lib/python3.10/site-packages/kapitan",
+        "--jpath", "/home/mh/Projects/syn/commodore/venv/lib/python3.10/site-packages/commodore",
+        "--jpath", "/home/mh/dev/syn/dependencies/kyverno"
+      ],
+      "rootPatterns": [".git/", "jsonnetfile.json"],
+      "filetypes": ["jsonnet","libsonnet"]
+    }
+  }
 }
