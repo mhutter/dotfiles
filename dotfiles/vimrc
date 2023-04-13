@@ -95,6 +95,10 @@ let g:ctrlp_user_command = [
     \ 'find %s -type f'
     \ ]
 
+" Rust
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 " End Plugins }}}
 

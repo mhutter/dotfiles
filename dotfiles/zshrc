@@ -13,11 +13,10 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(git kubectl)
 source "${ZSH}/oh-my-zsh.sh"
 
-# Code and Projects
-c() { cd "${HOME}/code/$1" || return 1; }
-_c() { _files -W ~/code -/; }
-compdef _c c
+which nvim &>/dev/null && \
+  alias vim=nvim
 
+# Code and Projects
 p() { cd "${HOME}/Projects/$1" || return 1; }
 _p() { _files -W ~/Projects -/; }
 compdef _p p
@@ -77,3 +76,12 @@ buildSSHCompletion
   autoload -U +X bashcompinit && bashcompinit
   complete -o nospace -C /usr/local/bin/mc mc
 }
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+eval "$(direnv hook zsh)"
+
+which commodore &>/dev/null && source <(_COMMODORE_COMPLETE=zsh_source commodore)
+which flux &>/dev/null && source <(flux completion zsh)
+which starship &>/dev/null && eval "$(starship init zsh)"

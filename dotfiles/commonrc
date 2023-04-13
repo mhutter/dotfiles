@@ -7,22 +7,22 @@ alias ...='cd ../..'
 
 if [ "$(uname -s)" = "Darwin" ]; then
   alias ls='ls -G'
+  alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 else
   alias ls='ls --color'
 fi
 
 alias ll='ls -laF'
 
-alias cleanup-known-hosts="sed -i .bak -E '/^(49|157|159|116|78|88|168|188)\./d' ~/.ssh/known_hosts"
 which code &>/dev/null ^^ alias code=codium
 alias crêpe=grep
 alias cwd='cd "$(pwd -P)"'
-alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
 alias makepw='pwgen -s 32 64'
-alias t=task
-which exa &>/dev/null && alias ls='exa --group-directories-first -g --time-style long-iso'
+# which exa &>/dev/null && alias ls='exa --group-directories-first -g --time-style long-iso'
 which hd &>/dev/null || alias hd="hexdump -C"
-which podman &>/dev/null && alias docker=podman
+# which bat &>/dev/null && alias cat=bat
+alias ec='emacsclient -c'
+alias localip='ip -br -4 a show dev wlan0 | awk "{print \$3}" | cut -d/ -f1'
 
 alias argo-copy-token='kubectl -n syn get secret steward -o json | jq -r .data.token | base64 --decode | pbcopy'
 alias argo-port-forward='kubectl -n syn port-forward svc/argocd-server 8443:443'
@@ -44,8 +44,8 @@ bup() {
 
 # Kubernetes helpers
 alias kubens='kubectl config set-context --current --namespace'
-alias k=kubectl
-alias kaf='kubectl apply -f'
+alias k=kubecolor
+alias ka='kubecolor --as=cluster-admin'
 alias ks='kubeseal --format yaml --cert'
 
 # SSH-Agent
@@ -72,11 +72,8 @@ fi
 GPG_TTY=$(tty)
 export GPG_TTY
 
-
-function ssh () {
-  TERM=${TERM//-unicode-/-}
-  TERM=${TERM//screen\./}
-  /usr/bin/ssh -t $@ "tmux new-session -A -s mh || bash"
+ssh () {
+  TERM=xterm-256color /usr/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
 }
 sshc() {
   awk '/Host /{print $2"\n"$3}' ~/.ssh/config | grep "$@"
@@ -86,7 +83,6 @@ sslcheck() {
   echo Q \
     | openssl s_client -servername "$1" -connect "${1}:443" 2>/dev/null \
     | openssl x509 -noout -text \
-#    | grep -Ei 'not (before|after)|(subject|dns):'
 }
 
 temp() {
@@ -108,25 +104,10 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # Various helpers
 
-commodore() {
-  docker run \
-    -it \
-    --rm \
-    --user "0" \
-    --env "COMMODORE_API_URL=$COMMODORE_API_URL" \
-    --env "COMMODORE_API_TOKEN=$COMMODORE_API_TOKEN" \
-    --env "SSH_AUTH_SOCK=/tmp/ssh_agent.sock" \
-    --volume "${SSH_AUTH_SOCK}:/tmp/ssh_agent.sock" \
-    --volume "${HOME}/.ssh/known_hosts:/app/.ssh/known_hosts:ro" \
-    --volume "${HOME}/.gitconfig:/app/.gitconfig:ro" \
-    --volume "${PWD}:/app/data" \
-    --workdir /app/data \
-    "docker.io/projectsyn/commodore:${COMMODORE_VERSION:=latest}" \
-    "$@"
-}
+cluster() { cp ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config }
+_cluster() { _files -W ~/.config/cattledog/kubeconfigs -/; }
+compdef _cluster cluster
 
-cluster() {
-  cp ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config
-}
+compdef kubecolor=kubectl
 
 # vim: ft=sh

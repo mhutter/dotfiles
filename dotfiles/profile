@@ -1,31 +1,39 @@
-# vim: ft=sh
-[ -z "$__PROFILE" ] || return
-export __PROFILE=loaded
+. /etc/profile
 
-export EDITOR=vim
-export LANG=en_US.UTF-8
-export LANGUAGE=$LANG
-export LC_ALL=$LANG
-export LC_CTYPE=$LANG
+export EDITOR=nvim
 export LESS='-R -F -X'
 export NVM_DIR="$HOME/.nvm"
 export PATH="${HOME}/bin:${PATH}"
+export NEOVIDE_MULTIGRID=true
+export NEOVIDE_MAXIMIZED=true
+export NEOVIDE_FRAME=none
+
+source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 # various PATH locations
+prepend_path() {
+  case ":$PATH:" in
+    *:"$1":*)
+      ;;
+    *)
+      PATH="$1${PATH:+:$PATH}$1"
+  esac
+}
 paths=(
   "${HOME}/.yarn/bin"
   "${HOME}/.cargo/bin"
   "${HOME}/.local/bin"
+  "${HOME}/.config/emacs/bin"
 )
 for p in "${paths[@]}"; do
-  test -d "$p" && PATH="${p}:${PATH}"
+  test -d "$p" && prepend_path "$p"
 done
-export PATH
 
 which go &>/dev/null && \
-  PATH="$(go env GOPATH)/bin:${PATH}" && \
-  export PATH
+  prepend_path "$(go env GOPATH)/bin"
 
 which rustup &>/dev/null && \
   RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" && \
   export RUST_SRC_PATH
+
+export PATH
