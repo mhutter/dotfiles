@@ -6,13 +6,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 if [ "$(uname -s)" = "Darwin" ]; then
-  alias ls='ls -G'
   alias ips="ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d' ' -f 2"
-else
-  alias ls='ls --color'
 fi
-
-alias ll='ls -laF'
 
 which code &>/dev/null ^^ alias code=codium
 alias crêpe=grep
