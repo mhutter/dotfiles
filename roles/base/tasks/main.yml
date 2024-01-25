@@ -13,7 +13,6 @@
       - htop
       - inetutils
       - openssh
-      - tmux
       - which
       - zsh-autosuggestions
       - zsh-syntax-highlighting
