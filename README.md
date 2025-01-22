@@ -1,3 +1,1 @@
-# dotfiles & setup
-
-My collection of dotfiles as well as machine configuration
+This repo was obsoleted by [mhutter/nix](https://github.com/mhutter/nix)
